@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 421541919}
   - component: {fileID: 421541918}
   - component: {fileID: 421541917}
+  - component: {fileID: 421541920}
   m_Layer: 5
   m_Name: Grass
   m_TagString: Untagged
@@ -509,7 +510,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 421541918}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519161831}
+        m_TargetAssemblyTypeName: Astar, Assembly-CSharp
+        m_MethodName: ChangeTileType
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 421541920}
+          m_ObjectArgumentAssemblyTypeName: TileButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &421541918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +561,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421541915}
   m_CullTransparentMesh: 1
+--- !u!114 &421541920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421541915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf37025aa7d63d40803313c59ee2cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: 3
+--- !u!1 &519161830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519161832}
+  - component: {fileID: 519161831}
+  m_Layer: 0
+  m_Name: Astar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &519161831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519161830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38a75df3c7226c40a914e9c0402cc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 553125547}
+  mainCamera: {fileID: 519420031}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  tiles:
+  - {fileID: 11400000, guid: 44631b1b128ca684392ee71abc1af008, type: 2}
+  - {fileID: 11400000, guid: 85a1d8efe3dcf96408cee4bfc482c876, type: 2}
+  - {fileID: 11400000, guid: becdb14961586eb46aa2961418541048, type: 2}
+  - {fileID: 11400000, guid: 78176b5f80a784740bed8c2241ec2e43, type: 2}
+  - {fileID: 11400000, guid: 1eed0e1ca8f4a8243b8c86e792d50d0a, type: 2}
+--- !u!4 &519161832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519161830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 71.81323, y: 293.0411, z: -2.1815982}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +724,8 @@ GameObject:
   - component: {fileID: 553125545}
   - component: {fileID: 553125547}
   - component: {fileID: 553125546}
-  m_Layer: 0
+  - component: {fileID: 553125548}
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,6 +1642,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &553125548
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553125544}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &611779349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2300,7 @@ GameObject:
   - component: {fileID: 1083003013}
   - component: {fileID: 1083003012}
   - component: {fileID: 1083003011}
+  - component: {fileID: 1083003014}
   m_Layer: 5
   m_Name: Water
   m_TagString: Untagged
@@ -2273,7 +2372,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1083003012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519161831}
+        m_TargetAssemblyTypeName: Astar, Assembly-CSharp
+        m_MethodName: ChangeTileType
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1083003014}
+          m_ObjectArgumentAssemblyTypeName: TileButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1083003012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2312,6 +2423,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083003009}
   m_CullTransparentMesh: 1
+--- !u!114 &1083003014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083003009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf37025aa7d63d40803313c59ee2cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: 2
 --- !u!1 &1427618958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +3099,7 @@ GameObject:
   - component: {fileID: 1898761290}
   - component: {fileID: 1898761289}
   - component: {fileID: 1898761288}
+  - component: {fileID: 1898761291}
   m_Layer: 5
   m_Name: Goal
   m_TagString: Untagged
@@ -3046,7 +3171,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1898761289}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519161831}
+        m_TargetAssemblyTypeName: Astar, Assembly-CSharp
+        m_MethodName: ChangeTileType
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1898761291}
+          m_ObjectArgumentAssemblyTypeName: TileButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1898761289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3085,6 +3222,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898761286}
   m_CullTransparentMesh: 1
+--- !u!114 &1898761291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898761286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf37025aa7d63d40803313c59ee2cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: 1
 --- !u!1 &1908083054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,6 +3519,7 @@ GameObject:
   - component: {fileID: 2092501287}
   - component: {fileID: 2092501286}
   - component: {fileID: 2092501285}
+  - component: {fileID: 2092501288}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -3440,7 +3591,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2092501286}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519161831}
+        m_TargetAssemblyTypeName: Astar, Assembly-CSharp
+        m_MethodName: ChangeTileType
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2092501288}
+          m_ObjectArgumentAssemblyTypeName: TileButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2092501286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3479,3 +3642,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092501283}
   m_CullTransparentMesh: 1
+--- !u!114 &2092501288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092501283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf37025aa7d63d40803313c59ee2cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: 0
