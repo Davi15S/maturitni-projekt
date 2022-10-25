@@ -29,12 +29,6 @@ public class Cursor : MonoBehaviour
         Vector3Int mouseCell = tilemap.WorldToCell(noZ);
         Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
 
-        // if (!tilemap.GetTile(mouseCell) && !isNeighbor(cellWorldPos) && tileMapScript.GetList().Contains(cellWorldPos))
-        // {
-        //     isDragged = false;
-        //     Debug.Log("Drag disabled");
-        // }
-
         if (isDragged && tilemap.GetTile(mouseCell) && isNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
         {
             transform.position = cellWorldPos;
