@@ -18,7 +18,7 @@ public class Astar : MonoBehaviour
     private HashSet<Node> openList;
     private HashSet<Node> closedList;
     private Stack<Vector3Int> path;
-    private List<Vector3Int> waterTiles = new List<Vector3Int>();
+    private List<Vector3Int> blockedTiles = new List<Vector3Int>();
     private Dictionary<Vector3Int, Node> allNodes = new Dictionary<Vector3Int, Node>();
     private Node current;
     private int gScore = 10;
@@ -27,14 +27,27 @@ public class Astar : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);
+            // RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);
 
-            if (hit.collider != null)
+            // if (hit.collider != null)
+            // {
+            //     Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            //     Vector3Int clickPos = tilemap.WorldToCell(mouseWorldPos);
+
+            //     ChangeTile(clickPos);
+            // }
+            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var noZ = new Vector3(pos.x, pos.y);
+            Vector3Int mouseCell = tilemap.WorldToCell(noZ);
+            var tileUnderMouse = tilemap.GetTile(mouseCell);
+
+            if (tileUnderMouse == tiles[0])
             {
-                Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int clickPos = tilemap.WorldToCell(mouseWorldPos);
-
-                ChangeTile(clickPos);
+                startPos = mouseCell;
+            }
+            else if (tileUnderMouse == tiles[1])
+            {
+                goalPos = mouseCell;
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -46,6 +59,7 @@ public class Astar : MonoBehaviour
 
     private void Initialize()
     {
+        Debug.Log("Initializace");
         current = GetNode(startPos);
         openList = new HashSet<Node>();
         closedList = new HashSet<Node>();
@@ -62,12 +76,27 @@ public class Astar : MonoBehaviour
             UpdateCurrentTile(ref current);
             path = GeneratePath(current);
         }
-        AstarDebugger.MyInstance.CreateTiles(openList, closedList, allNodes, startPos, goalPos, path);
+
+        if (path != null)
+        {
+            foreach (Vector3Int pos in path)
+            {
+                if (pos != startPos && pos != goalPos)
+                {
+                    tilemap.SetTile(pos, tiles[4]);
+                }
+            }
+        }
+        openList.Clear();
+        closedList.Clear();
+        current = null;
+        // AstarDebugger.MyInstance.CreateTiles(openList, closedList, allNodes, startPos, goalPos, path);
     }
 
     private List<Node> FindNeighbors(Vector3Int parentPos)
     {
         List<Node> neighbors = new List<Node>();
+        blockedTiles = GenerateLevel.MyInstance.BlockedTiles();
 
         for (int x = -1; x <= 1; x++)
         {
@@ -75,7 +104,7 @@ public class Astar : MonoBehaviour
             {
                 Vector3Int neighborPos = new Vector3Int(parentPos.x - x, parentPos.y - y, parentPos.z);
 
-                if ((x == 0 || y == 0) && neighborPos != startPos && tilemap.GetTile(neighborPos) && !waterTiles.Contains(neighborPos))
+                if ((x == 0 || y == 0) && neighborPos != startPos && tilemap.GetTile(neighborPos) && !blockedTiles.Contains(neighborPos))
                 {
                     Node neighbor = GetNode(neighborPos);
                     neighbors.Add(neighbor);
@@ -145,7 +174,6 @@ public class Astar : MonoBehaviour
         else if (tileType == TileType.WATER)
         {
             tilemap.SetTile(clickPos, tiles[(int)tileType]);
-            waterTiles.Add(clickPos);
         }
         tilemap.SetTile(clickPos, tiles[(int)tileType]);
     }
