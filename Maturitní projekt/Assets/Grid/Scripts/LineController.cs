@@ -5,7 +5,7 @@ using UnityEngine;
 public class LineController : MonoBehaviour
 {
     private LineRenderer lr;
-    private List<Vector3> points;
+    [SerializeField] private Cursor cursor;
 
     private void Awake()
     {
@@ -14,12 +14,11 @@ public class LineController : MonoBehaviour
 
     private void Update()
     {
-        points = Cursor.MyInstance.getPointsList();
-        lr.positionCount = points.Count;
+        lr.positionCount = cursor.getPointsList().Count;
 
-        for (int i = 0; i < points.Count; i++)
+        for (int i = 0; i < cursor.getPointsList().Count; i++)
         {
-            lr.SetPosition(i, points[i]);
+            lr.SetPosition(i, cursor.getPointsList()[i]);
         }
     }
 }

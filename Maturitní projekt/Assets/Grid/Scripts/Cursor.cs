@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class Cursor : MonoBehaviour
 {
-    private static Cursor instance;
-    public static Cursor MyInstance { get { if (instance == null) { instance = FindObjectOfType<Cursor>(); } return instance; } }
     private bool isDragged = false;
-    private Vector3Int startCellPosition = new Vector3Int(-6, 1);
+    [SerializeField] private Vector3Int startCellPosition;
     [SerializeField] private Tilemap tilemap;
     private List<Vector3> cursorPositionList = new List<Vector3>();
-    private Sprite mySprite;
+    private SpriteRenderer mySprite;
 
     private void Start()
     {
+        mySprite = GetComponent<SpriteRenderer>();
         transform.position = tilemap.GetCellCenterWorld(startCellPosition);
+        cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
     }
 
     private void Update()
@@ -25,24 +26,48 @@ public class Cursor : MonoBehaviour
         Vector3Int mouseCell = tilemap.WorldToCell(noZ);
         Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
 
-        if (isDragged && tilemap.GetTile(mouseCell))
+        if (!tilemap.GetTile(mouseCell) && !isNeighbor(cellWorldPos))
+        {
+            isDragged = false;
+        }
+
+        if (isDragged && tilemap.GetTile(mouseCell) && isNeighbor(cellWorldPos))
         {
             transform.position = cellWorldPos;
             if (!cursorPositionList.Contains(cellWorldPos))
             {
                 cursorPositionList.Add(cellWorldPos);
-                Debug.Log(cursorPositionList);
+            }
+            else if (cursorPositionList.Last() != cellWorldPos)
+            {
+                int index = cursorPositionList.FindIndex(x => x == cellWorldPos);
+                cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
             }
         }
     }
 
+    private bool isNeighbor(Vector3 pos)
+    {
+        if (cursorPositionList.Count > 1)
+        {
+            if ((pos.x == cursorPositionList.Last().x && pos.y > cursorPositionList.Last().y) || (pos.x == cursorPositionList.Last().x && pos.y < cursorPositionList.Last().y) || (pos.x > cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y) || (pos.x < cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y))
+            {
+                return true;
+            }
+            else { return false; }
+        }
+        else { return true; }
+    }
+
     void OnMouseOver()
     {
-        if (Input.GetMouseButton(0))
-        {
-            isDragged = true;
-        }
+        if (Input.GetMouseButton(0)) { isDragged = true; mySprite.color = Color.red; }
         else { isDragged = false; }
+    }
+
+    void OnMouseExit()
+    {
+        mySprite.color = Color.white;
     }
 
     public List<Vector3> getPointsList()
