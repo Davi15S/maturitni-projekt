@@ -11,29 +11,36 @@ public class Cursor : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     private List<Vector3> cursorPositionList = new List<Vector3>();
     private SpriteRenderer mySprite;
+    private TilemapScript tileMapScript;
 
     private void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
+        tileMapScript = tilemap.GetComponent<TilemapScript>();
+
         transform.position = tilemap.GetCellCenterWorld(startCellPosition);
         cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var noZ = new Vector3(pos.x, pos.y);
         Vector3Int mouseCell = tilemap.WorldToCell(noZ);
         Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
 
-        if (!tilemap.GetTile(mouseCell) && !isNeighbor(cellWorldPos))
-        {
-            isDragged = false;
-        }
+        // if (!tilemap.GetTile(mouseCell) && !isNeighbor(cellWorldPos) && tileMapScript.GetList().Contains(cellWorldPos))
+        // {
+        //     isDragged = false;
+        //     Debug.Log("Drag disabled");
+        // }
 
-        if (isDragged && tilemap.GetTile(mouseCell) && isNeighbor(cellWorldPos))
+        if (isDragged && tilemap.GetTile(mouseCell) && isNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
         {
             transform.position = cellWorldPos;
+            tileMapScript.RemoveFromList(cursorPositionList.Last());
+            tileMapScript.AddToList(cellWorldPos);
+
             if (!cursorPositionList.Contains(cellWorldPos))
             {
                 cursorPositionList.Add(cellWorldPos);
@@ -44,19 +51,19 @@ public class Cursor : MonoBehaviour
                 cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
             }
         }
+        else
+        {
+            isDragged = false;
+        }
     }
 
     private bool isNeighbor(Vector3 pos)
     {
-        if (cursorPositionList.Count > 1)
+        if ((pos.x == cursorPositionList.Last().x && pos.y > cursorPositionList.Last().y) || (pos.x == cursorPositionList.Last().x && pos.y < cursorPositionList.Last().y) || (pos.x > cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y) || (pos.x < cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y))
         {
-            if ((pos.x == cursorPositionList.Last().x && pos.y > cursorPositionList.Last().y) || (pos.x == cursorPositionList.Last().x && pos.y < cursorPositionList.Last().y) || (pos.x > cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y) || (pos.x < cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y))
-            {
-                return true;
-            }
-            else { return false; }
+            return true;
         }
-        else { return true; }
+        else { return false; }
     }
 
     void OnMouseOver()
