@@ -73,7 +73,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Positions:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc5f18cc0f76c248bafe2d69e3a04f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 5749641960018136653}
 --- !u!1 &5749641960018136640
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,8 +156,8 @@ GameObject:
   - component: {fileID: 5749641960018136654}
   - component: {fileID: 5749641960018136653}
   m_Layer: 0
-  m_Name: Cursor
-  m_TagString: Untagged
+  m_Name: Cable
+  m_TagString: Cable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,9 +169,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5749641960018136640}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.353, y: -0.748, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3612, y: -0.7494, z: 0}
+  m_LocalScale: {x: 0.10784184, y: 0.11671995, z: 0.11545}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5749641959406731117}
@@ -255,7 +254,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1462085, y: 1.1433828}
+  m_Size: {x: 2.7988565, y: 2.7919564}
   m_EdgeRadius: 0
 --- !u!114 &5749641960018136653
 MonoBehaviour:
@@ -269,5 +268,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf34ac281b0c1848aa1b1a51e109a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCellPosition: {x: 0, y: 0, z: 0}
-  tilemap: {fileID: 5245895840350759307, guid: ea80a1d61043fad4690d3907606d0a80, type: 3}
+  startCellPosition: {x: -6, y: 0, z: 0}
+  tilemap: {fileID: 0}
