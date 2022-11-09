@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Tests/WireGrid.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Game/Menu.unity
+    guid: 991c7b20b22f81e48820ae4e9742b1bb
+  - enabled: 1
+    path: Assets/Scenes/Game/Game.unity
+    guid: 26a00949d28868d438e653cec969d9be
   m_configObjects: {}
