@@ -5,48 +5,41 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float movementSpeed = 1f;
-    public float collisionOffset = 0.05f;
-    public ContactFilter2D movementFilter;
+    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float collisionOffset = 0.05f;
+    [SerializeField] ContactFilter2D movementFilter;
+    private Vector2 movementInput;
+    private Rigidbody2D rb;
+    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    Vector2 movementInput;
-    Rigidbody2D rb;
-    SpriteRenderer spriteRenderer;
-    Animator animator;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    bool canMove = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        // If movement input is 0, try to move
-        if (movementInput != Vector2.zero && canMove)
+        // If movement input is not 0, try to move
+        if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
-            if (!success && movementInput.x > 0) { success = TryMove(new Vector2(movementInput.x, 0)); }
-            if (!success && movementInput.y > 0) { success = TryMove(new Vector2(0, movementInput.y)); }
-            animator.SetBool("isMoving", success);
+
+            if (!success)
+            {
+                success = TryMove(new Vector2(movementInput.x, 0));
+                if (!success) { success = TryMove(new Vector2(0, movementInput.y)); }
+            }
         }
-        else { animator.SetBool("isMoving", false); }
-
-        // Set direction of sprite to movement direction
-        if (movementInput.x < 0) { spriteRenderer.flipX = true; }
-        else if (movementInput.x > 0) { spriteRenderer.flipX = false; }
-
     }
+
 
     private bool TryMove(Vector2 direction)
     {
-        // Check the potential collisions
-        int count = rb.Cast(direction, movementFilter, castCollisions, movementSpeed * Time.fixedDeltaTime + collisionOffset);
+        // Check for potentional collisions
+        int count = rb.Cast(direction, movementFilter, castCollisions, moveSpeed * Time.fixedDeltaTime + collisionOffset);
         if (count == 0)
         {
-            rb.MovePosition(rb.position + direction * Time.fixedDeltaTime * movementSpeed);
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
             return true;
         }
         else { return false; }

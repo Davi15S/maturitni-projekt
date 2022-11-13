@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2135520388, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135520388, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
+      propertyPath: collisionOffset
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1179784389333154811, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -174,13 +182,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2261154349195069254, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 9a552093e23928d4d8f3421abb7f3e19, type: 3}
+    - target: {fileID: 2261154349195069254, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6418604145395855580, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238602717805154898, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
-      propertyPath: m_Simulated
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7937dcb9d737874eaae7e7dc360ebdc, type: 3}
