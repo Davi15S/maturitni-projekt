@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float collisionOffset = 0.05f;
-    [SerializeField] ContactFilter2D movementFilter;
-    private Vector2 movementInput;
-    private Rigidbody2D rb;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Tilemap obstacles;
+    private Vector3Int obstaclesMap;
+    private Vector2 movement;
+
 
     void Start()
     {
@@ -19,31 +19,13 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // If movement input is not 0, try to move
-        if (movementInput != Vector2.zero)
-        {
-            bool success = TryMove(movementInput);
-
-            if (!success)
-            {
-                success = TryMove(new Vector2(movementInput.x, 0));
-                if (!success) { success = TryMove(new Vector2(0, movementInput.y)); }
-            }
-        }
+        Move();
     }
 
-
-    private bool TryMove(Vector2 direction)
+    void Move()
     {
-        // Check for potentional collisions
-        int count = rb.Cast(direction, movementFilter, castCollisions, moveSpeed * Time.fixedDeltaTime + collisionOffset);
-        if (count == 0)
-        {
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-            return true;
-        }
-        else { return false; }
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
     }
-
-    void OnMove(InputValue movementValue) { movementInput = movementValue.Get<Vector2>(); }
 }
