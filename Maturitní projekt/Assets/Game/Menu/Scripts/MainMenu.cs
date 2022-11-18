@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame() { SceneManager.LoadScene("Floor0"); }
+    public void LoadNewGame()
+    {
+
+    }
+    public void LoadSavedGame() { }
     public void Quit() { Application.Quit(); }
 }
