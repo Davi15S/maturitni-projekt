@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 403635184}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &194667705
@@ -169,7 +169,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &194667706
 MonoBehaviour:
@@ -411,7 +411,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2105419386}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: LoadNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -974,7 +974,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2105419386}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: LoadGame
+        m_MethodName: LoadSavedGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1117,7 +1117,7 @@ RectTransform:
   - {fileID: 1080656788}
   - {fileID: 2105419385}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1259,6 +1259,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753584655}
   m_CullTransparentMesh: 1
+--- !u!1001 &1981494435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1470514366289552554, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_Name
+      value: DataPersistanceManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514366289552555, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86948e8ffd440204bbee7dbd349ce529, type: 3}
 --- !u!1 &2105419384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,3 +1368,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688fa89bcebe7d642a4e6b2697cfa30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGameButton: {fileID: 403635186}
+  continueGameButton: {fileID: 1549514004}

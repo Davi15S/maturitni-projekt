@@ -6,23 +6,14 @@ public class FloorManager : MonoBehaviour, IDataPersistence
 {
     private static int currentFloor = 0;
     [SerializeField] private List<GameObject> floors = new List<GameObject>();
-    public static FloorManager instance;
+    public static FloorManager instance { get; private set; }
 
-    public void LoadData(GameData data)
-    {
-        currentFloor = data.floor;
-    }
-    public void SaveData(ref GameData data)
-    {
-        data.floor = currentFloor;
-    }
-    public static FloorManager Instance()
-    {
-        return instance;
-    }
+    public void LoadData(GameData data) { currentFloor = data.floor; }
+    public void SaveData(ref GameData data) { data.floor = currentFloor; }
 
     private void Start()
     {
+        if (instance != null) { }
         instance = this;
         foreach (GameObject floor in floors) { floor.SetActive(false); }
         floors[currentFloor].SetActive(true);

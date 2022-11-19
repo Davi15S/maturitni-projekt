@@ -5,5 +5,5 @@ using UnityEngine;
 public class FloorTrigger : MonoBehaviour
 {
     [SerializeField] private bool isNextFloor;
-    void OnTriggerExit2D() { FloorManager.Instance().LoadFloor(isNextFloor ? true : false); }
+    void OnTriggerExit2D() { FloorManager.instance.LoadFloor(isNextFloor ? true : false); }
 }
