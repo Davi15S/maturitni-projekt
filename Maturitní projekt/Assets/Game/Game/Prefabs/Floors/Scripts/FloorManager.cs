@@ -13,8 +13,8 @@ public class FloorManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        if (instance != null) { }
-        instance = this;
+        if (instance != null) { Destroy(this.gameObject); }
+        else { instance = this; }
         foreach (GameObject floor in floors) { floor.SetActive(false); }
         floors[currentFloor].SetActive(true);
     }
