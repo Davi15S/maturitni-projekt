@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public enum MathOperations { ADD, SUBSTRACT, MULTIPLY, DIVIDE }
 
 public class GeneratedNumberManager : MonoBehaviour
 {
+    public static GeneratedNumberManager instance { get; private set; }
     [SerializeField] private GameObject displayNumber;
     [SerializeField] private GameObject totalNumber;
     [SerializeField] private GameObject cables;
@@ -14,11 +16,7 @@ public class GeneratedNumberManager : MonoBehaviour
 
     private GenerateCableNumber[] cableNumbers;
     private GoalScript[] goalNumbers;
-    public static GeneratedNumberManager instance { get; private set; }
-
     private int generatedNumber;
-    private MathOperations mathOperation;
-    private int goalGeneratedNumber;
 
     private float calculatedTotalNumber;
     private float resultNumber;
@@ -38,13 +36,10 @@ public class GeneratedNumberManager : MonoBehaviour
         cableNumbers = cables.GetComponentsInChildren<GenerateCableNumber>();
         goalNumbers = goals.GetComponentsInChildren<GoalScript>();
 
-        displayNumber.GetComponent<TextMeshProUGUI>().text = generatedNumber.ToString();
-        totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
-    }
+        CalculateResultNumber();
 
-    void Update()
-    {
-        totalNumber.GetComponent<TextMeshProUGUI>().text = calculatedTotalNumber.ToString();
+        displayNumber.GetComponent<TextMeshProUGUI>().text = resultNumber.ToString();
+        totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
     }
 
     public void CalculateTotalNumber(float number, bool substact)
@@ -52,10 +47,18 @@ public class GeneratedNumberManager : MonoBehaviour
         if (substact) { calculatedTotalNumber -= RoundNumber(number); }
         else { calculatedTotalNumber += RoundNumber(number); }
         calculatedTotalNumber = RoundNumber(calculatedTotalNumber);
+        totalNumber.GetComponent<TextMeshProUGUI>().text = calculatedTotalNumber.ToString();
+        if (calculatedTotalNumber == resultNumber) { Debug.Log("Výhra"); }
     }
     private void CalculateResultNumber()
     {
-
+        cableNumbers = cableNumbers.OrderBy(i => Random.value).ToArray();
+        for (int i = 0; i < cableNumbers.Length; i++)
+        {
+            Debug.Log(cableNumbers[i].GetGeneratedNumber() + "|" + goalNumbers[i].GetGeneratedNumber() + "|" + goalNumbers[i].GetMathOperation());
+            resultNumber += CalculateNumber(cableNumbers[i].GetGeneratedNumber(), goalNumbers[i].GetGeneratedNumber(), goalNumbers[i].GetMathOperation());
+        }
+        resultNumber = RoundNumber(resultNumber);
     }
 
     public float CalculateNumber(int cableNumber, int goalNumber, MathOperations mathOperation)
@@ -69,7 +72,6 @@ public class GeneratedNumberManager : MonoBehaviour
             case MathOperations.MULTIPLY:
                 return cableNumber * goalNumber;
             case MathOperations.DIVIDE:
-                Debug.Log(((float)cableNumber / (float)goalNumber));
                 return RoundNumber((float)cableNumber / (float)goalNumber);
             default:
                 return 0;

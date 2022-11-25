@@ -33,7 +33,6 @@ public class GoalScript : MonoBehaviour
         defaultText = mathOperation.ToString() + " " + generatedNumber;
         displayText.text = defaultText;
     }
-
     void Update()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0f);
@@ -58,22 +57,19 @@ public class GoalScript : MonoBehaviour
             }
         }
     }
-
     private void GenerateNumber() { generatedNumber = UnityEngine.Random.Range(1, 11); }
-
     private void CalculateNumber()
     {
         dataSent[0] = true;
         dataSent[1] = false;
         calculatedNumber = GeneratedNumberManager.instance.CalculateNumber(cableGeneratedNumber, generatedNumber, mathOperation);
     }
-
     private void CableUnConnect()
     {
         dataSent[1] = true;
         dataSent[0] = false;
         GeneratedNumberManager.instance.CalculateTotalNumber(calculatedNumber, true);
     }
-
     public int GetGeneratedNumber() { return generatedNumber; }
+    public MathOperations GetMathOperation() { return mathOperation; }
 }

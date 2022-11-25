@@ -11,16 +11,12 @@ public class GenerateCableNumber : MonoBehaviour
     void Start()
     {
         GenerateNumber();
-        cable = GetComponentInChildren<Cursor>();
-        cable.SetGeneratedNumber(generatedNumber);
+        GetComponentInChildren<Cursor>().SetGeneratedNumber(generatedNumber);
         displayNumber = GetComponentInChildren<TextMeshPro>();
         displayNumber.text = generatedNumber.ToString();
     }
 
-    private void GenerateNumber()
-    {
-        generatedNumber = Random.Range(0, 11);
-    }
+    private void GenerateNumber() { generatedNumber = Random.Range(0, 11); }
 
     public int GetGeneratedNumber() { return generatedNumber; }
 }
