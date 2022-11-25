@@ -15,7 +15,7 @@ public class LineController : MonoBehaviour
 
     private void Update()
     {
-        lr.positionCount = cursor.getPointsList().Count;
-        for (int i = 0; i < cursor.getPointsList().Count; i++) { lr.SetPosition(i, cursor.getPointsList()[i]); }
+        lr.positionCount = cursor.GetPointsList().Count;
+        for (int i = 0; i < cursor.GetPointsList().Count; i++) { lr.SetPosition(i, cursor.GetPointsList()[i]); }
     }
 }

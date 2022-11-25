@@ -13,6 +13,7 @@ public class Cursor : MonoBehaviour
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
     private Vector3 cellWorldPos;
+    private int generatedNumber;
 
     private void Start()
     {
@@ -30,7 +31,7 @@ public class Cursor : MonoBehaviour
         Vector3Int mouseCell = tilemap.WorldToCell(noZ);
         Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
 
-        if (isDragged && tilemap.GetTile(mouseCell) && isNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
+        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
         {
             transform.position = cellWorldPos;
             tileMapScript.RemoveFromList(cursorPositionList.Last());
@@ -52,7 +53,7 @@ public class Cursor : MonoBehaviour
         }
     }
 
-    private bool isNeighbor(Vector3 pos)
+    private bool IsNeighbor(Vector3 pos)
     {
         if ((pos.x == cursorPositionList.Last().x && pos.y > cursorPositionList.Last().y) || (pos.x == cursorPositionList.Last().x && pos.y < cursorPositionList.Last().y) || (pos.x > cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y) || (pos.x < cursorPositionList.Last().x && pos.y == cursorPositionList.Last().y)) { return true; }
         else { return false; }
@@ -64,10 +65,11 @@ public class Cursor : MonoBehaviour
         else { isDragged = false; }
     }
 
-    void OnMouseExit()
-    {
-        mySprite.color = Color.white;
-    }
+    void OnMouseExit() { mySprite.color = Color.white; }
 
-    public List<Vector3> getPointsList() { return cursorPositionList; }
+    public List<Vector3> GetPointsList() { return cursorPositionList; }
+
+    public int GetGeneratedNumber() { return generatedNumber; }
+
+    public void SetGeneratedNumber(int number) { generatedNumber = number; }
 }
