@@ -9,14 +9,14 @@ public enum MathOperations { ADD, SUBSTRACT, MULTIPLY, DIVIDE }
 public class GeneratedNumberManager : MonoBehaviour
 {
     public static GeneratedNumberManager instance { get; private set; }
+
     [SerializeField] private GameObject displayNumber;
     [SerializeField] private GameObject totalNumber;
-    [SerializeField] private GameObject cables;
-    [SerializeField] private GameObject goals;
+    [SerializeField] private GameObject cablesObj;
+    [SerializeField] private GameObject goalsObj;
 
-    private GenerateCableNumber[] cableNumbers;
-    private GoalScript[] goalNumbers;
-    private int generatedNumber;
+    private GenerateCableNumber[] cables;
+    private GoalScript[] goals;
 
     private float calculatedTotalNumber;
     private float resultNumber;
@@ -33,8 +33,8 @@ public class GeneratedNumberManager : MonoBehaviour
 
     void Start()
     {
-        cableNumbers = cables.GetComponentsInChildren<GenerateCableNumber>();
-        goalNumbers = goals.GetComponentsInChildren<GoalScript>();
+        cables = cablesObj.GetComponentsInChildren<GenerateCableNumber>();
+        goals = goalsObj.GetComponentsInChildren<GoalScript>();
 
         CalculateResultNumber();
 
@@ -42,6 +42,7 @@ public class GeneratedNumberManager : MonoBehaviour
         totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
     }
 
+    // Spočítá součet všech propojených kabelů
     public void CalculateTotalNumber(float number, bool substact)
     {
         if (substact) { calculatedTotalNumber -= RoundNumber(number); }
@@ -50,13 +51,17 @@ public class GeneratedNumberManager : MonoBehaviour
         totalNumber.GetComponent<TextMeshProUGUI>().text = calculatedTotalNumber.ToString();
         if (calculatedTotalNumber == resultNumber) { Debug.Log("Výhra"); }
     }
+
+    // Spočítá výsledek, ke kterýmu se musí uživatel dostat
     private void CalculateResultNumber()
     {
-        cableNumbers = cableNumbers.OrderBy(i => Random.value).ToArray();
-        for (int i = 0; i < cableNumbers.Length; i++)
+        cables = cables.OrderBy(i => Random.value).ToArray();
+        for (int i = 0; i < cables.Length; i++)
         {
-            Debug.Log(cableNumbers[i].GetGeneratedNumber() + "|" + goalNumbers[i].GetGeneratedNumber() + "|" + goalNumbers[i].GetMathOperation());
-            resultNumber += CalculateNumber(cableNumbers[i].GetGeneratedNumber(), goalNumbers[i].GetGeneratedNumber(), goalNumbers[i].GetMathOperation());
+            // Debug text
+            Debug.Log(cables[i].GetGeneratedNumber() + "|" + goals[i].GetGeneratedNumber() + "|" + goals[i].GetMathOperation());
+
+            resultNumber += CalculateNumber(cables[i].GetGeneratedNumber(), goals[i].GetGeneratedNumber(), goals[i].GetMathOperation());
         }
         resultNumber = RoundNumber(resultNumber);
     }
@@ -77,6 +82,5 @@ public class GeneratedNumberManager : MonoBehaviour
                 return 0;
         }
     }
-
     private float RoundNumber(float number) { return Mathf.Round(number * 100.0f) * 0.01f; }
 }

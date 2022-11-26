@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
 
-public class Cursor : MonoBehaviour
+public class Cable : MonoBehaviour
 {
-    private bool isDragged = false;
     [SerializeField] private Vector3Int startCellPosition;
     [SerializeField] private Tilemap tilemap;
+
+    private bool isDragged = false;
     private List<Vector3> cursorPositionList = new List<Vector3>();
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
     private Vector3 cellWorldPos;
     private int generatedNumber;
+
 
     private void Start()
     {
@@ -26,31 +28,31 @@ public class Cursor : MonoBehaviour
 
     private void FixedUpdate()
     {
+        DragCable();
+    }
+
+    void DragCable()
+    {
         var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var noZ = new Vector3(pos.x, pos.y);
         Vector3Int mouseCell = tilemap.WorldToCell(noZ);
         Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
 
+        // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
         if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
         {
             transform.position = cellWorldPos;
             tileMapScript.RemoveFromList(cursorPositionList.Last());
             tileMapScript.AddToList(cellWorldPos);
 
-            if (!cursorPositionList.Contains(cellWorldPos))
-            {
-                cursorPositionList.Add(cellWorldPos);
-            }
+            if (!cursorPositionList.Contains(cellWorldPos)) { cursorPositionList.Add(cellWorldPos); }
             else if (cursorPositionList.Last() != cellWorldPos)
             {
                 int index = cursorPositionList.FindIndex(x => x == cellWorldPos);
                 cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
             }
         }
-        else if (tilemap.GetTile(mouseCell) || tileMapScript.GetList().Contains(cellWorldPos))
-        {
-            isDragged = false;
-        }
+        else if (tilemap.GetTile(mouseCell) || tileMapScript.GetList().Contains(cellWorldPos)) { isDragged = false; }
     }
 
     private bool IsNeighbor(Vector3 pos)
@@ -66,10 +68,7 @@ public class Cursor : MonoBehaviour
     }
 
     void OnMouseExit() { mySprite.color = Color.white; }
-
     public List<Vector3> GetPointsList() { return cursorPositionList; }
-
     public int GetGeneratedNumber() { return generatedNumber; }
-
     public void SetGeneratedNumber(int number) { generatedNumber = number; }
 }

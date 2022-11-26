@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 5749641960018136643}
   - component: {fileID: 5749641960018136642}
   - component: {fileID: 5749641960018136654}
-  - component: {fileID: 5749641960018136653}
+  - component: {fileID: 6296116928932228080}
   m_Layer: 0
   m_Name: Cable
   m_TagString: Cable
@@ -256,7 +256,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.7988565, y: 2.7919564}
   m_EdgeRadius: 0
---- !u!114 &5749641960018136653
+--- !u!114 &6296116928932228080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,8 +265,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5749641960018136640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf34ac281b0c1848aa1b1a51e109a4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 86e734a224b5c254998686772ae54217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCellPosition: {x: -6, y: 0, z: 0}
+  startCellPosition: {x: 0, y: 0, z: 0}
   tilemap: {fileID: 0}

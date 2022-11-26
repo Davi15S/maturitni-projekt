@@ -7,16 +7,17 @@ public class GenerateCableNumber : MonoBehaviour
 {
     private TextMeshPro displayNumber;
     private int generatedNumber;
-    private Cursor cable;
+
     void Start()
     {
         GenerateNumber();
-        GetComponentInChildren<Cursor>().SetGeneratedNumber(generatedNumber);
+        GetComponentInChildren<Cable>().SetGeneratedNumber(generatedNumber);
+
+        // Debug text
         displayNumber = GetComponentInChildren<TextMeshPro>();
         displayNumber.text = generatedNumber.ToString();
     }
 
     private void GenerateNumber() { generatedNumber = Random.Range(0, 11); }
-
     public int GetGeneratedNumber() { return generatedNumber; }
 }

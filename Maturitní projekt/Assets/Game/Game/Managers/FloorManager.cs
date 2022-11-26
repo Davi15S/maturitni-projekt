@@ -15,6 +15,11 @@ public class FloorManager : MonoBehaviour, IDataPersistence
     {
         if (instance != null) { Destroy(this.gameObject); }
         else { instance = this; }
+        SetFloors();
+    }
+
+    private void SetFloors()
+    {
         foreach (GameObject floor in floors) { floor.SetActive(false); }
         floors[currentFloor].SetActive(true);
     }

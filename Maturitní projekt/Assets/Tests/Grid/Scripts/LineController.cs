@@ -5,11 +5,11 @@ using UnityEngine;
 public class LineController : MonoBehaviour
 {
     private LineRenderer lr;
-    private Cursor cursor;
+    private Cable cursor;
 
     private void Awake()
     {
-        cursor = GetComponentInParent<Cursor>();
+        cursor = GetComponentInParent<Cable>();
         lr = GetComponent<LineRenderer>();
     }
 

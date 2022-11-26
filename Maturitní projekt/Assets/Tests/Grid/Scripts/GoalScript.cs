@@ -30,10 +30,17 @@ public class GoalScript : MonoBehaviour
         mathOperation = (MathOperations)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(MathOperations)).Length);
 
         GenerateNumber();
+
         defaultText = mathOperation.ToString() + " " + generatedNumber;
         displayText.text = defaultText;
     }
     void Update()
+    {
+        CheckCollider();
+    }
+
+    // Kontrola, jestli nějaký objekt necollidnul s cílem
+    void CheckCollider()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0f);
         foreach (Collider2D collider in colliders)
@@ -41,28 +48,34 @@ public class GoalScript : MonoBehaviour
             if (collider.gameObject != gameObject && collider.tag == "Cable")
             {
                 sprite.color = Color.red;
-                cableGeneratedNumber = collider.GetComponent<Cursor>().GetGeneratedNumber();
+                cableGeneratedNumber = collider.GetComponent<Cable>().GetGeneratedNumber();
+
+                // Debug text
                 displayText.text = cableGeneratedNumber + " " + defaultText;
+
                 if (!dataSent[0])
                 {
-                    CalculateNumber();
-                    GeneratedNumberManager.instance.CalculateTotalNumber(calculatedNumber, false);
+                    GeneratedNumberManager.instance.CalculateTotalNumber(CalculateNumber(), false);
                 }
             }
             else if (!Array.Exists(colliders, x => x.tag == "Cable"))
             {
-                sprite.color = Color.yellow;
+                // Debug text
                 displayText.text = defaultText;
+
+                sprite.color = Color.yellow;
                 if (!dataSent[1]) { CableUnConnect(); }
             }
         }
     }
+
     private void GenerateNumber() { generatedNumber = UnityEngine.Random.Range(1, 11); }
-    private void CalculateNumber()
+    private float CalculateNumber()
     {
         dataSent[0] = true;
         dataSent[1] = false;
         calculatedNumber = GeneratedNumberManager.instance.CalculateNumber(cableGeneratedNumber, generatedNumber, mathOperation);
+        return calculatedNumber;
     }
     private void CableUnConnect()
     {
