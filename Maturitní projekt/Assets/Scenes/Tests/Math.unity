@@ -357,6 +357,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7950504642104359282, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950504642104359282, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 291891f0559a6fb438ecd6b392481b07, type: 2}
     - target: {fileID: 7950504642698856531, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
       propertyPath: tilemap
       value: 
@@ -1634,7 +1642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 148.66}
+  m_AnchoredPosition: {x: 0, y: 189.16}
   m_SizeDelta: {x: 94.8847, y: 32.3256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647412270
@@ -2089,7 +2097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -143.69}
+  m_AnchoredPosition: {x: 0, y: -191.9}
   m_SizeDelta: {x: 94.8847, y: 32.3256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497283661
