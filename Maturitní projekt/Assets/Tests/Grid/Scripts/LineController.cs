@@ -11,11 +11,15 @@ public class LineController : MonoBehaviour
     {
         cursor = GetComponentInParent<Cable>();
         lr = GetComponent<LineRenderer>();
+        lr.SetVertexCount(3);
     }
 
     private void Update()
     {
         lr.positionCount = cursor.GetPointsList().Count;
-        for (int i = 0; i < cursor.GetPointsList().Count; i++) { lr.SetPosition(i, cursor.GetPointsList()[i]); }
+        for (int i = 0; i < cursor.GetPointsList().Count; i++)
+        {
+            lr.SetPosition(i, cursor.GetPointsList()[i]);
+        }
     }
 }
