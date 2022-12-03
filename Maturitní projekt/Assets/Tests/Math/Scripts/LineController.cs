@@ -11,7 +11,6 @@ public class LineController : MonoBehaviour
     {
         cursor = GetComponentInParent<Cable>();
         lr = GetComponent<LineRenderer>();
-        lr.SetVertexCount(3);
     }
 
     private void Update()
