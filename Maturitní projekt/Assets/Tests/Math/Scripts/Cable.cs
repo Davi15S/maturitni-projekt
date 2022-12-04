@@ -13,7 +13,6 @@ public class Cable : MonoBehaviour
     private List<Vector3> cursorPositionList = new List<Vector3>();
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
-    private Vector3 cellWorldPos;
     private int generatedNumber;
 
 
@@ -33,10 +32,8 @@ public class Cable : MonoBehaviour
 
     void DragCable()
     {
-        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var noZ = new Vector3(pos.x, pos.y);
-        Vector3Int mouseCell = tilemap.WorldToCell(noZ);
-        Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
+        Vector3Int mouseCell = tileMapScript.GetMouseCellPosition();
+        Vector3 cellWorldPos = tileMapScript.GetCellWordlPosition();
 
         // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
         if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
@@ -45,11 +42,16 @@ public class Cable : MonoBehaviour
             tileMapScript.RemoveFromList(cursorPositionList.Last());
             tileMapScript.AddToList(cellWorldPos);
 
-            if (!cursorPositionList.Contains(cellWorldPos)) { cursorPositionList.Add(cellWorldPos); }
+            if (!cursorPositionList.Contains(cellWorldPos))
+            {
+                cursorPositionList.Add(cellWorldPos);
+                tileMapScript.AddToLogicGateList(cellWorldPos);
+            }
             else if (cursorPositionList.Last() != cellWorldPos)
             {
                 int index = cursorPositionList.FindIndex(x => x == cellWorldPos);
                 cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
+                tileMapScript.RemoveRangeLogicGateList(index);
             }
         }
         else if (tilemap.GetTile(mouseCell) || tileMapScript.GetList().Contains(cellWorldPos)) { isDragged = false; }
