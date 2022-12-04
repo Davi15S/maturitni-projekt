@@ -8,6 +8,7 @@ public class Cable : MonoBehaviour
 {
     [SerializeField] private Vector3Int startCellPosition;
     [SerializeField] private Tilemap tilemap;
+    [SerializeField] private bool isRobotics;
 
     private bool isDragged = false;
     private List<Vector3> cursorPositionList = new List<Vector3>();
@@ -19,10 +20,20 @@ public class Cable : MonoBehaviour
     private void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
-        tileMapScript = tilemap.GetComponent<TilemapScript>();
+        tileMapScript = GetComponentInParent<TilemapScript>();
+        tilemap = GetComponentInParent<Tilemap>();
 
-        transform.position = tilemap.GetCellCenterWorld(startCellPosition);
-        cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
+        if (!isRobotics)
+        {
+            transform.position = tilemap.GetCellCenterWorld(startCellPosition);
+            cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
+        }
+        else
+        {
+            transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
+            cursorPositionList.Add(transform.position);
+            tileMapScript.RemoveFromLogicGateList(transform.position);
+        }
     }
 
     private void FixedUpdate()
@@ -69,7 +80,7 @@ public class Cable : MonoBehaviour
         else { isDragged = false; }
     }
 
-    void OnMouseExit() { mySprite.color = Color.white; }
+    void OnMouseExit() { mySprite.color = Color.cyan; }
     public List<Vector3> GetPointsList() { return cursorPositionList; }
     public int GetGeneratedNumber() { return generatedNumber; }
     public void SetGeneratedNumber(int number) { generatedNumber = number; }

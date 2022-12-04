@@ -7,6 +7,7 @@ public class TilemapScript : MonoBehaviour
 {
     [SerializeField] bool isRobotics = false;
     [SerializeField] Transform testObject;
+    [SerializeField] Transform parent;
     private List<Vector3> blockedPos = new List<Vector3>();
     private List<Vector3> logicGateBlockedPos = new List<Vector3>();
     private Tilemap tilemap;
@@ -30,16 +31,42 @@ public class TilemapScript : MonoBehaviour
         {
             Vector3 cellWorldPos = GetCellWordlPosition();
 
-            if (!blockedPos.Contains(cellWorldPos) && !logicGateBlockedPos.Contains(cellWorldPos))
+            if (!blockedPos.Contains(cellWorldPos) && !logicGateBlockedPos.Contains(cellWorldPos) && CanBuild(cellWorldPos))
             {
-                Instantiate(testObject, cellWorldPos, Quaternion.identity);
-                AddToList(cellWorldPos);
+                Instantiate(testObject, cellWorldPos, Quaternion.identity, parent);
+
+                Vector3Int cellPos = tilemap.WorldToCell(cellWorldPos);
+
+                for (int x = cellPos.x - 1; x < cellPos.x + 2; x++)
+                {
+                    for (int y = cellPos.y - 1; y < cellPos.y + 2; y++)
+                    {
+                        AddToList(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)));
+                    }
+                }
             }
             else
             {
                 Debug.Log("Cant build there");
             }
         }
+    }
+
+    private bool CanBuild(Vector3 pos)
+    {
+        Vector3Int cellPos = tilemap.WorldToCell(pos);
+
+        for (int x = cellPos.x - 1; x < cellPos.x + 2; x++)
+        {
+            for (int y = cellPos.y - 1; y < cellPos.y + 2; y++)
+            {
+                if (blockedPos.Contains(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0))) || logicGateBlockedPos.Contains(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0))) || !tilemap.GetTile(new Vector3Int(x, y, 0)))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public void AddToList(Vector3 pos)
@@ -53,16 +80,6 @@ public class TilemapScript : MonoBehaviour
     public List<Vector3> GetList()
     {
         return blockedPos;
-    }
-
-    public void SetLogicGateBlockedList(List<Vector3> pos)
-    {
-        // logicGateBlockedPos.Clear();
-        // logicGateBlockedPos.AddRange(pos);
-        // foreach (var item in logicGateBlockedPos)
-        // {
-        //     Debug.Log(item);
-        // }
     }
 
     public void AddToLogicGateList(Vector3 pos)
