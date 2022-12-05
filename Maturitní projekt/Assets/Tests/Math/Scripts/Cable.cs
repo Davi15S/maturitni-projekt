@@ -32,7 +32,7 @@ public class Cable : MonoBehaviour
         {
             transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
             cursorPositionList.Add(transform.position);
-            tileMapScript.RemoveFromLogicGateList(transform.position);
+            tileMapScript.AddToLogicGateList(transform.position);
         }
     }
 
@@ -58,7 +58,7 @@ public class Cable : MonoBehaviour
                 cursorPositionList.Add(cellWorldPos);
                 tileMapScript.AddToLogicGateList(cellWorldPos);
             }
-            else if (cursorPositionList.Last() != cellWorldPos)
+            else
             {
                 int index = cursorPositionList.FindIndex(x => x == cellWorldPos);
                 cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
