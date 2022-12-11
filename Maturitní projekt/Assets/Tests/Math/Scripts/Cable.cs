@@ -8,35 +8,46 @@ public class Cable : MonoBehaviour
 {
     [SerializeField] private Vector3Int startCellPosition;
     [SerializeField] private Tilemap tilemap;
+    [SerializeField] private bool isRobotics;
+    [SerializeField] private bool isPositive;
 
     private bool isDragged = false;
     private List<Vector3> cursorPositionList = new List<Vector3>();
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
-    private Vector3 cellWorldPos;
     private int generatedNumber;
 
 
     private void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
-        tileMapScript = tilemap.GetComponent<TilemapScript>();
+        tileMapScript = GetComponentInParent<TilemapScript>();
+        tilemap = GetComponentInParent<Tilemap>();
 
-        transform.position = tilemap.GetCellCenterWorld(startCellPosition);
-        cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
+        if (!isRobotics)
+        {
+            transform.position = tilemap.GetCellCenterWorld(startCellPosition);
+            cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
+        }
+        else
+        {
+            transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
+            cursorPositionList.Add(transform.position);
+            tileMapScript.AddToLogicGateList(transform.position);
+            CheckConnection();
+        }
     }
 
     private void FixedUpdate()
     {
         DragCable();
+        CheckConnection();
     }
 
     void DragCable()
     {
-        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var noZ = new Vector3(pos.x, pos.y);
-        Vector3Int mouseCell = tilemap.WorldToCell(noZ);
-        Vector3 cellWorldPos = tilemap.GetCellCenterWorld(mouseCell);
+        Vector3Int mouseCell = tileMapScript.GetMouseCellPosition();
+        Vector3 cellWorldPos = tileMapScript.GetCellWordlPosition();
 
         // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
         if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
@@ -45,11 +56,16 @@ public class Cable : MonoBehaviour
             tileMapScript.RemoveFromList(cursorPositionList.Last());
             tileMapScript.AddToList(cellWorldPos);
 
-            if (!cursorPositionList.Contains(cellWorldPos)) { cursorPositionList.Add(cellWorldPos); }
-            else if (cursorPositionList.Last() != cellWorldPos)
+            if (!cursorPositionList.Contains(cellWorldPos))
+            {
+                cursorPositionList.Add(cellWorldPos);
+                tileMapScript.AddToLogicGateList(cellWorldPos);
+            }
+            else
             {
                 int index = cursorPositionList.FindIndex(x => x == cellWorldPos);
                 cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
+                tileMapScript.RemoveRangeLogicGateList(index);
             }
         }
         else if (tilemap.GetTile(mouseCell) || tileMapScript.GetList().Contains(cellWorldPos)) { isDragged = false; }
@@ -63,12 +79,30 @@ public class Cable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButton(0)) { isDragged = true; mySprite.color = Color.red; }
+        if (Input.GetMouseButton(0)) { isDragged = true; }
         else { isDragged = false; }
     }
 
-    void OnMouseExit() { mySprite.color = Color.white; }
     public List<Vector3> GetPointsList() { return cursorPositionList; }
     public int GetGeneratedNumber() { return generatedNumber; }
     public void SetGeneratedNumber(int number) { generatedNumber = number; }
+    private void CheckConnection()
+    {
+        if (isPositive)
+        {
+            mySprite.color = Color.green;
+        }
+        else
+        {
+            mySprite.color = Color.red;
+        }
+    }
+    public void SetConnection(bool connection)
+    {
+        isPositive = connection;
+    }
+    public bool GetConnection()
+    {
+        return isPositive;
+    }
 }

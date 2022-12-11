@@ -11,8 +11,6 @@ public class LineController : MonoBehaviour
     {
         cursor = GetComponentInParent<Cable>();
         lr = GetComponent<LineRenderer>();
-
-        // Testing merging branch
     }
 
     private void Update()
