@@ -58,6 +58,8 @@ public class GoalScript : MonoBehaviour
                     GeneratedNumberManager.instance.CalculateTotalNumber(CalculateNumber(), false);
                 }
             }
+
+            // Objekt necolliduje s kabelem
             else if (!Array.Exists(colliders, x => x.tag == "Cable"))
             {
                 // Debug text

@@ -9,6 +9,7 @@ public class Cable : MonoBehaviour
     [SerializeField] private Vector3Int startCellPosition;
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private bool isRobotics;
+    [SerializeField] private bool isPositive;
 
     private bool isDragged = false;
     private List<Vector3> cursorPositionList = new List<Vector3>();
@@ -33,12 +34,14 @@ public class Cable : MonoBehaviour
             transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
             cursorPositionList.Add(transform.position);
             tileMapScript.AddToLogicGateList(transform.position);
+            CheckConnection();
         }
     }
 
     private void FixedUpdate()
     {
         DragCable();
+        CheckConnection();
     }
 
     void DragCable()
@@ -76,12 +79,30 @@ public class Cable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButton(0)) { isDragged = true; mySprite.color = Color.red; }
+        if (Input.GetMouseButton(0)) { isDragged = true; }
         else { isDragged = false; }
     }
 
-    void OnMouseExit() { mySprite.color = Color.cyan; }
     public List<Vector3> GetPointsList() { return cursorPositionList; }
     public int GetGeneratedNumber() { return generatedNumber; }
     public void SetGeneratedNumber(int number) { generatedNumber = number; }
+    private void CheckConnection()
+    {
+        if (isPositive)
+        {
+            mySprite.color = Color.green;
+        }
+        else
+        {
+            mySprite.color = Color.red;
+        }
+    }
+    public void SetConnection(bool connection)
+    {
+        isPositive = connection;
+    }
+    public bool GetConnection()
+    {
+        return isPositive;
+    }
 }

@@ -374,6 +374,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 553125547}
     - target: {fileID: 8574648915414167022, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
+      propertyPath: isPositive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574648915414167022, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
+      propertyPath: isRobotics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574648915414167022, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
       propertyPath: startCellPosition.x
       value: -6
       objectReference: {fileID: 0}
@@ -1560,6 +1568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbf0e20c65aab24985ab4bb8062db87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRobotics: 0
+  testObject: {fileID: 0}
+  parent: {fileID: 0}
 --- !u!1 &611779349
 GameObject:
   m_ObjectHideFlags: 0

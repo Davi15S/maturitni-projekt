@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e734a224b5c254998686772ae54217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCellPosition: {x: 0, y: 0, z: 0}
+  startCellPosition: {x: -11, y: 4, z: 0}
   tilemap: {fileID: 0}
   isRobotics: 0
+  isPositive: 0

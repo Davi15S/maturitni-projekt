@@ -89,8 +89,6 @@ public class TilemapScript : MonoBehaviour
 
     public void RemoveRangeLogicGateList(int index)
     {
-        Debug.Log(logicGateBlockedPos.Count);
-        Debug.Log(index + 1);
         logicGateBlockedPos.RemoveRange(index + 1, (logicGateBlockedPos.Count - index - 1));
     }
 
