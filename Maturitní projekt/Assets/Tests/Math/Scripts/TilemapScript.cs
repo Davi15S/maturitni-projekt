@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
 public class TilemapScript : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class TilemapScript : MonoBehaviour
     }
     void Update()
     {
-        if (isRobotics)
+        if (isRobotics && !EventSystem.current.IsPointerOverGameObject())
         {
             BuildLogicGate();
         }
