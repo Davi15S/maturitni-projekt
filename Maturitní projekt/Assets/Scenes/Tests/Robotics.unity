@@ -4913,9 +4913,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 8699796298221428247, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9013092054842418974, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9180810861787147762, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_Color.b

@@ -11,12 +11,12 @@ public class LogicGateObject : ScriptableObject
     public LogicGateType type;
     public Color color;
 
-    public bool CheckConnection(InputScript[] array)
+    public bool CheckConnection(InputScript[] array, LogicGateType logicGateType)
     {
-        if (type == LogicGateType.AND) { return array.All(x => x.GetConnection()); }
-        else if (type == LogicGateType.OR) { return array.Any(x => x.GetConnection()); }
-        else if (type == LogicGateType.XOR) { return array[0].GetConnection() ^ array[1].GetConnection(); }
-        else if (type == LogicGateType.NOR) { return array.All(x => !x.GetConnection()); }
+        if (logicGateType == LogicGateType.AND) { return array.All(x => x.GetConnection()); }
+        else if (logicGateType == LogicGateType.OR) { return array.Any(x => x.GetConnection()); }
+        else if (logicGateType == LogicGateType.XOR) { return array[0].GetConnection() ^ array[1].GetConnection(); }
+        else if (logicGateType == LogicGateType.NOR) { return array.All(x => !x.GetConnection()); }
         else { return false; }
     }
 }
