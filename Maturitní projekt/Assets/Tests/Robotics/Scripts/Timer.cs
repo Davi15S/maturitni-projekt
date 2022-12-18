@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private float gameTime;
-    [SerializeField] private GameObject lostGameCanvas;
+    [SerializeField] private GameObject gameCanvas;
     void Start()
     {
         slider.maxValue = gameTime;
@@ -22,17 +22,11 @@ public class Timer : MonoBehaviour
         if (time <= 0)
         {
             Time.timeScale = 0f;
-            lostGameCanvas.SetActive(true);
+            gameCanvas.SetActive(true);
         }
         else
         {
             slider.value = time;
         }
-    }
-
-    public void GoBack()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Game");
     }
 }
