@@ -6,7 +6,7 @@ public class FloorTrigger : MonoBehaviour
 {
     [SerializeField] private bool isNextFloor;
     [SerializeField] private Transform portPos;
-    private float portOffset = 0.8f;
+    private float portOffset = 4f;
     void OnTriggerExit2D(Collider2D other)
     {
         FloorManager.instance.LoadFloor(isNextFloor ? true : false);
