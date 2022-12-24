@@ -1940,6 +1940,10 @@ PrefabInstance:
       propertyPath: startCellPosition.x
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 8574648915414167022, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
+      propertyPath: startCellPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb3f6668556f964d91b3883ec6bcde1, type: 3}
 --- !u!4 &1123837238 stripped

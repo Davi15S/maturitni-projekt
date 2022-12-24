@@ -17,6 +17,10 @@ public class Cable : MonoBehaviour
     private TilemapScript tileMapScript;
     private int generatedNumber;
 
+    private LogicGateType type;
+
+    [SerializeField] private bool isDebug;
+
 
     private void Start()
     {
@@ -97,12 +101,18 @@ public class Cable : MonoBehaviour
             mySprite.color = Color.red;
         }
     }
-    public void SetConnection(bool connection)
+    public void SetConnection(bool connection, LogicGateType logicType)
     {
+        type = logicType;
         isPositive = connection;
     }
     public bool GetConnection()
     {
         return isPositive;
+    }
+
+    public LogicGateType GetType()
+    {
+        return type;
     }
 }

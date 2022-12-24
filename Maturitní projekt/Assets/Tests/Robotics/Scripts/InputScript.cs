@@ -29,7 +29,7 @@ public class InputScript : MonoBehaviour
     private void CheckColliders()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0f);
-        if (colliders.Length < 1)
+        if (colliders.Length <= 0)
         {
             isPositive = false;
         }
@@ -39,7 +39,7 @@ public class InputScript : MonoBehaviour
             {
                 isPositive = true;
             }
-            else if (!Array.Exists(colliders, x => x.tag == "Cable"))
+            else
             {
                 isPositive = false;
             }
