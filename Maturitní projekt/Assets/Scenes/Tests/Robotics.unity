@@ -5062,7 +5062,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Obvod se polo\u017E\xED prav\xFDm tla\u010D\xEDtkem na my\u0161i"
+  m_text: "Obvod se polo\u017E\xED prav\xFDm tla\u010D\xEDtkem na my\u0161i. Obvod
+    se odstran\xED p\u0159ejet\xEDm na obvod a stisknut\xEDm kl\xE1vesy DELETE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 022f010a1582fb446ae7304efa5e7bc3, type: 2}
   m_sharedMaterial: {fileID: -5036418917740440224, guid: 022f010a1582fb446ae7304efa5e7bc3, type: 2}
@@ -5242,9 +5243,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 8699796298221428247, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9013092054842418974, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
