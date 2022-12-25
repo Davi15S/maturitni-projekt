@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private bool isPE = false;
     private Rigidbody2D rb;
     private Vector2 movement;
 

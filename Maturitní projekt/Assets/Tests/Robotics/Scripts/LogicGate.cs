@@ -10,10 +10,12 @@ public class LogicGate : MonoBehaviour
     private LogicGateType type;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private InputScript[] inputScriptArray;
+    private TilemapScript tilemapScript;
 
     void Start()
     {
         SetLogicGate(RoboticsManager.instance.GetLogicGateType());
+        tilemapScript = GetComponentInParent<TilemapScript>();
         inputScriptArray = GetComponentsInChildren<InputScript>();
         spriteRenderer.color = logicGateObj.color;
         type = logicGateObj.type;
@@ -28,5 +30,13 @@ public class LogicGate : MonoBehaviour
     private void SetLogicGate(LogicGateType type)
     {
         logicGateObj = logicGateObjList.Find(x => x.type == type);
+    }
+    void OnMouseOver()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            tilemapScript.RemoveLogicGateFromList(transform.position, output.transform.position);
+            Destroy(this.gameObject);
+        }
     }
 }
