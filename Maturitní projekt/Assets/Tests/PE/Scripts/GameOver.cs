@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
 {
     public void GoBack()
     {
+        SceneManager.LoadSceneAsync("Game");
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Game");
     }
 }

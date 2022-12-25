@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        Time.timeScale = 1f;
         rb = GetComponent<Rigidbody2D>();
     }
 
