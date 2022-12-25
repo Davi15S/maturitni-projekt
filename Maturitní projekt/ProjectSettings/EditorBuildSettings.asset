@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Game/Menu.unity
     guid: 991c7b20b22f81e48820ae4e9742b1bb
   - enabled: 1
+    path: Assets/Scenes/Tests/Math.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Tests/PE.unity
+    guid: 25d08da2666b3964782118d8626430a2
+  - enabled: 1
+    path: Assets/Scenes/Tests/Robotics.unity
+    guid: 03e74831ed8ed184ea04ffb3abcccf2c
+  - enabled: 1
     path: Assets/Scenes/Game/Game.unity
-    guid: 26a00949d28868d438e653cec969d9be
+    guid: 14a5a976b7c92cb4ca64b98795b7a705
   m_configObjects: {}

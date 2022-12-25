@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2055052835867861918}
   - component: {fileID: -4707228337926078328}
+  - component: {fileID: 1919276694680360452}
   m_Layer: 0
   m_Name: LogicGate
   m_TagString: Untagged
@@ -55,6 +56,32 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e341f9e5bdbeb3469ef6bc1563d931a, type: 2}
   output: {fileID: 2828930306020080646}
   spriteRenderer: {fileID: 2055052836045562510}
+--- !u!61 &1919276694680360452
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055052835867861919}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2055052836045562508
 GameObject:
   m_ObjectHideFlags: 0

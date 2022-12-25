@@ -9,7 +9,8 @@ public class Timer : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private float gameTime;
     [SerializeField] private GameObject gameCanvas;
-    void Start()
+
+    void Awake()
     {
         slider.maxValue = gameTime;
         slider.value = gameTime;
@@ -17,16 +18,16 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        float time = gameTime - Time.time;
+        gameTime -= Time.deltaTime;
 
-        if (time <= 0)
+        if (gameTime <= 0)
         {
             Time.timeScale = 0f;
             gameCanvas.SetActive(true);
         }
         else
         {
-            slider.value = time;
+            slider.value = gameTime;
         }
     }
 }

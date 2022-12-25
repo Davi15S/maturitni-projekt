@@ -37,14 +37,7 @@ public class TilemapScript : MonoBehaviour
                 Instantiate(testObject, cellWorldPos, Quaternion.identity, parent);
 
                 Vector3Int cellPos = tilemap.WorldToCell(cellWorldPos);
-
-                for (int x = cellPos.x - 1; x < cellPos.x + 2; x++)
-                {
-                    for (int y = cellPos.y - 1; y < cellPos.y + 2; y++)
-                    {
-                        AddToList(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)));
-                    }
-                }
+                CycleLogicGatePositions(cellPos, false);
             }
             else
             {
@@ -68,6 +61,31 @@ public class TilemapScript : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void CycleLogicGatePositions(Vector3Int centerPos, bool isDelete)
+    {
+        for (int x = centerPos.x - 1; x < centerPos.x + 2; x++)
+        {
+            for (int y = centerPos.y - 1; y < centerPos.y + 2; y++)
+            {
+                if (isDelete)
+                {
+                    RemoveFromList(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)));
+                }
+                else
+                {
+                    AddToList(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)));
+                }
+            }
+        }
+    }
+
+    public void RemoveLogicGateFromList(Vector3 pos, Vector3 ouputPos)
+    {
+        Vector3Int cellPos = tilemap.WorldToCell(pos);
+        CycleLogicGatePositions(cellPos, true);
+        RemoveFromLogicGateList(ouputPos);
     }
 
     public void AddToList(Vector3 pos)

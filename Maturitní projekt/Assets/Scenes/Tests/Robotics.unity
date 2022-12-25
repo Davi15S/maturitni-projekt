@@ -3938,17 +3938,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5200781142568100420, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
   m_PrefabInstance: {fileID: 8315327528850296063}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &993164572 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 993164572, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
-  m_PrefabInstance: {fileID: 8315327528850296063}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9383785e7543d1647a798d9f5c154302, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1034798710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4619,6 +4608,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8322826527273824109, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
   m_PrefabInstance: {fileID: 8322826525958663027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1403798559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7566045381887554215, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
+  m_PrefabInstance: {fileID: 8322826525958663027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403798557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea5808acbe55af45a00209a6cdd5353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1547092062 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8492755261914063939, guid: 4d88064d481b24c42ae00e4da1c298a7, type: 3}
@@ -5062,7 +5062,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Obvod se polo\u017E\xED prav\xFDm tla\u010D\xEDtkem na my\u0161i"
+  m_text: "Obvod se polo\u017E\xED prav\xFDm tla\u010D\xEDtkem na my\u0161i. Obvod
+    se odstran\xED p\u0159ejet\xEDm na obvod a stisknut\xEDm kl\xE1vesy DELETE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 022f010a1582fb446ae7304efa5e7bc3, type: 2}
   m_sharedMaterial: {fileID: -5036418917740440224, guid: 022f010a1582fb446ae7304efa5e7bc3, type: 2}
@@ -5146,6 +5147,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1085737668}
     m_Modifications:
+    - target: {fileID: 993164572, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
+      propertyPath: gameCanvas
+      value: 
+      objectReference: {fileID: 1403798557}
     - target: {fileID: 993164572, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: lostGameCanvas
       value: 
@@ -5238,9 +5243,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 8699796298221428247, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9013092054842418974, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
@@ -5342,6 +5351,14 @@ PrefabInstance:
     - target: {fileID: 8322826527581242544, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 993164572}
+      objectReference: {fileID: 1403798559}
+    - target: {fileID: 8322826527581242544, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322826527581242544, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOver, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
