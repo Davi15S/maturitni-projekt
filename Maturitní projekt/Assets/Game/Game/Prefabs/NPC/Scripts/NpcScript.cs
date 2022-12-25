@@ -22,6 +22,7 @@ public class NpcScript : MonoBehaviour
     {
         if (visualCueAnimation.GetBool("playerInRange") && Input.GetKeyDown(KeyCode.E))
         {
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync(subject.ToString());
         }
     }

@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [SerializeField] private bool isPE = false;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private bool isGrounded;
 
     public void LoadData(GameData data)
     {
@@ -28,14 +27,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if (isPE)
-        {
-            Jump();
-        }
-        else
-        {
-            Move();
-        }
+        Move();
     }
 
     void Move()
@@ -43,22 +35,5 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
-    }
-
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector2.up * 200);
-            isGrounded = false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
     }
 }
