@@ -38,8 +38,9 @@ public class InputScript : MonoBehaviour
             if (collider.gameObject != gameObject && collider.tag == "Cable" && collider.GetComponent<Cable>().GetConnection())
             {
                 isPositive = true;
+                Debug.Log(isPositive);
             }
-            else
+            else if (collider.tag != "LogicGate")
             {
                 isPositive = false;
             }
