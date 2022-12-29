@@ -27,7 +27,7 @@ public class Cable : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         tileMapScript = GetComponentInParent<TilemapScript>();
         tilemap = GetComponentInParent<Tilemap>();
-        // Testing committing to main branch : AGAIN 2x
+        // Testing committing to main branch : AGAIN 3x
 
         if (!isRobotics)
         {
