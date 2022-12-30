@@ -13,12 +13,12 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadSceneAsync("Game");
+        SceneManager.LoadSceneAsync("Game_v2");
     }
     public void LoadSavedGame()
     {
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("Game");
+        SceneManager.LoadSceneAsync("Game_v2");
     }
     public void Quit() { Application.Quit(); }
     private void DisableMenuButtons()
