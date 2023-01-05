@@ -8,11 +8,12 @@ TagManager:
   - Cable
   - NPC
   - Ground
+  - LogicGate
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cable
   - Water
   - UI
   - Tilemap

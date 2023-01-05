@@ -4,47 +4,87 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ProgrammingArea : MonoBehaviour
 {
-    private string initText;
-    private TextMeshProUGUI text;
-    private string[] texts;
-    private Rect target = new Rect();
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private GameObject buttonParent;
+    [SerializeField] private List<ProgramItem> programItems;
+    private string initText;
+    private Canvas canvas;
+    private Camera camera;
+    private TextMeshProUGUI text;
+    private string[] texts;
 
-    private string mainColor = "#1049a3";
+    private RectTransform textBoxRectTransform;
+    private int currentlyActiveLinkedElement;
+
+    public delegate void CloseTooltipEvent();
+    public static event CloseTooltipEvent OnCloseTooltipEvent;
+
+    public delegate void HoverOnLintEvent(string keyword, Vector3 mousePos);
+    public static event HoverOnLintEvent OnHoverLinkEvent;
 
     void Awake()
     {
         initText = GetComponentInParent<Programming>().initText;
         text = GetComponentInChildren<TextMeshProUGUI>();
+        canvas = GetComponentInParent<Canvas>();
         text.text = initText;
         text.ForceMeshUpdate();
+
+        textBoxRectTransform = GetComponentInChildren<RectTransform>();
+        camera = canvas.worldCamera;
     }
 
     void Start()
     {
-        InitProgramming();
+        foreach (ProgramItem item in programItems)
+        {
+            InitProgramming(item.word);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        CheckForLinkAtMousePosition();
     }
 
-    private void InitProgramming()
+    private void InitProgramming(string findWord)
     {
-        string findWord = "for";
-
         char[] seperators = new char[] { ' ' };
-        texts = initText.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+        texts = initText.Replace("\n", "Đ ").Split(seperators, StringSplitOptions.RemoveEmptyEntries);
 
-        int index = Array.IndexOf(texts, findWord);
-        texts[index] = "<link><style=\"Program\">" + findWord + "</style></link>";
+        int[] indexes = texts.Select((item, i) => item == findWord ? i : -1).Where(i => i != -1).ToArray();
 
-        text.text = string.Join(" ", texts);
+        foreach (int i in indexes)
+        {
+            texts[i] = $"<link=\"{findWord}\"><style=\"Program\">{findWord}</style></link>";
+        }
+
+        text.text = string.Join(" ", texts).Replace("Đ ", "\n").Replace("Đ", "").Replace("<tab>", "    ");
+    }
+
+    private void CheckForLinkAtMousePosition()
+    {
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+
+        bool isIntersectingRectTransform = TMP_TextUtilities.IsIntersectingRectTransform(textBoxRectTransform, mousePos, camera);
+        if (!isIntersectingRectTransform)
+            return;
+
+        int intersectingLink = TMP_TextUtilities.FindIntersectingLink(text, mousePos, camera);
+
+        if (currentlyActiveLinkedElement != intersectingLink)
+            OnCloseTooltipEvent?.Invoke();
+
+        if (intersectingLink == -1)
+            return;
+
+        TMP_LinkInfo linkInfo = text.textInfo.linkInfo[intersectingLink];
+
+        OnHoverLinkEvent?.Invoke(linkInfo.GetLinkID(), mousePos);
+        currentlyActiveLinkedElement = intersectingLink;
     }
 }

@@ -222,7 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8be7c8d6dec05648bcd59d52c59fe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initText: "for (Gameobject floor in floors)\n{\n     floor.setActive(true)\n}\n"
+  initText: "for (Gameobject floor in floors)\n{\n     floor.setActive(true)\n}\nfor
+    (Gameobject floor in floors)\n{\n     floor.setActive(true)\n}\n"
 --- !u!114 &1294765732
 MonoBehaviour:
   m_ObjectHideFlags: 0
