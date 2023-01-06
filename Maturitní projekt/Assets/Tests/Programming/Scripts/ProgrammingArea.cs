@@ -20,6 +20,7 @@ public class ProgrammingArea : MonoBehaviour
     private RectTransform textBoxRectTransform;
     private int currentlyActiveLinkedElement;
 
+    private Tooltip tooltip;
     public delegate void CloseTooltipEvent();
     public static event CloseTooltipEvent OnCloseTooltipEvent;
 
@@ -33,9 +34,9 @@ public class ProgrammingArea : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         text.text = initText;
         text.ForceMeshUpdate();
+        tooltip = GetComponentInParent<Tooltip>();
 
         textBoxRectTransform = GetComponentInChildren<RectTransform>();
-        camera = canvas.worldCamera;
     }
 
     void Start()
@@ -70,13 +71,13 @@ public class ProgrammingArea : MonoBehaviour
     {
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
 
-        bool isIntersectingRectTransform = TMP_TextUtilities.IsIntersectingRectTransform(textBoxRectTransform, mousePos, camera);
+        bool isIntersectingRectTransform = TMP_TextUtilities.IsIntersectingRectTransform(textBoxRectTransform, mousePos, null);
         if (!isIntersectingRectTransform)
             return;
 
-        int intersectingLink = TMP_TextUtilities.FindIntersectingLink(text, mousePos, camera);
+        int intersectingLink = TMP_TextUtilities.FindIntersectingLink(text, mousePos, null);
 
-        if (currentlyActiveLinkedElement != intersectingLink)
+        if (currentlyActiveLinkedElement != intersectingLink && !tooltip.MouseOver())
             OnCloseTooltipEvent?.Invoke();
 
         if (intersectingLink == -1)

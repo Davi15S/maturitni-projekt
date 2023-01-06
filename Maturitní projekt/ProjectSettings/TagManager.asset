@@ -9,6 +9,7 @@ TagManager:
   - NPC
   - Ground
   - LogicGate
+  - Tooltip
   layers:
   - Default
   - TransparentFX

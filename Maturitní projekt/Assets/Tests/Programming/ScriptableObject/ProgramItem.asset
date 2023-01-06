@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccf61460fa54e04c9524e4da649c502, type: 3}
   m_Name: ProgramItem
   m_EditorClassIdentifier: 
-  word: 
-  replaceWords: []
+  word: for
+  replaceWords:
+  - for
+  - foreach
+  - while
