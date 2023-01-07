@@ -7,7 +7,9 @@ public class Programming : MonoBehaviour
     [TextArea(5, 20)]
     [SerializeField] public string initText;
     [SerializeField] private GameObject tooltipContainer;
-
+    [SerializeField] public List<ProgramItem> programItems;
+    [SerializeField] private TooltipButton tooltipButton;
+    [SerializeField] private Tooltip tooltip;
     private void OnEnable()
     {
         ProgrammingArea.OnHoverLinkEvent += GetTooltipInfo;
@@ -20,12 +22,21 @@ public class Programming : MonoBehaviour
         ProgrammingArea.OnCloseTooltipEvent -= CloseTooltip;
     }
 
-    private void GetTooltipInfo(string keyword, Vector3 mousePos)
+    private void GetTooltipInfo(string keyword, Vector3 mousePos, string linkText)
     {
-        if (!tooltipContainer.gameObject.activeInHierarchy)
+        foreach (ProgramItem item in programItems)
         {
-            tooltipContainer.transform.position = new Vector3(mousePos.x, mousePos.y - 20, 0);
-            tooltipContainer.SetActive(true);
+            if (item.replaceWords.Contains(linkText))
+            {
+                if (!tooltipContainer.gameObject.activeInHierarchy)
+                {
+                    tooltipContainer.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+                    tooltipButton.InstantiateButtons(item.replaceWords, linkText);
+                    Debug.Log(tooltip.GetHeight());
+                    tooltipContainer.SetActive(true);
+                }
+                return;
+            }
         }
     }
 
@@ -34,6 +45,7 @@ public class Programming : MonoBehaviour
         if (tooltipContainer.gameObject.activeInHierarchy)
         {
             tooltipContainer.SetActive(false);
+            tooltipButton.DestroyChildrens();
         }
     }
 }

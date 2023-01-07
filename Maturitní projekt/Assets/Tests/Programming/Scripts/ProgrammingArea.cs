@@ -10,21 +10,20 @@ public class ProgrammingArea : MonoBehaviour
 {
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private GameObject buttonParent;
-    [SerializeField] private List<ProgramItem> programItems;
     private string initText;
     private Canvas canvas;
-    private Camera camera;
     private TextMeshProUGUI text;
     private string[] texts;
+    private List<ProgramItem> programItems;
 
     private RectTransform textBoxRectTransform;
     private int currentlyActiveLinkedElement;
 
-    private Tooltip tooltip;
+    private TooltipHandler tooltip;
     public delegate void CloseTooltipEvent();
     public static event CloseTooltipEvent OnCloseTooltipEvent;
 
-    public delegate void HoverOnLintEvent(string keyword, Vector3 mousePos);
+    public delegate void HoverOnLintEvent(string keyword, Vector3 mousePos, string linkText);
     public static event HoverOnLintEvent OnHoverLinkEvent;
 
     void Awake()
@@ -34,16 +33,24 @@ public class ProgrammingArea : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         text.text = initText;
         text.ForceMeshUpdate();
-        tooltip = GetComponentInParent<Tooltip>();
+        tooltip = GetComponentInParent<TooltipHandler>();
+        programItems = GetComponentInParent<Programming>().programItems;
+
 
         textBoxRectTransform = GetComponentInChildren<RectTransform>();
     }
 
     void Start()
     {
+        char[] seperators = new char[] { ' ' };
+        texts = initText.Replace("\n", "Đ ").Replace("(", "( ").Replace(")", " )").Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+
         foreach (ProgramItem item in programItems)
         {
-            InitProgramming(item.word);
+            foreach (string word in item.replaceWords)
+            {
+                InitProgramming(word);
+            }
         }
     }
 
@@ -54,17 +61,14 @@ public class ProgrammingArea : MonoBehaviour
 
     private void InitProgramming(string findWord)
     {
-        char[] seperators = new char[] { ' ' };
-        texts = initText.Replace("\n", "Đ ").Split(seperators, StringSplitOptions.RemoveEmptyEntries);
-
         int[] indexes = texts.Select((item, i) => item == findWord ? i : -1).Where(i => i != -1).ToArray();
 
         foreach (int i in indexes)
         {
-            texts[i] = $"<link=\"{findWord}\"><style=\"Program\">{findWord}</style></link>";
+            texts[i] = $"<link=\"{findWord}{i}\"><style=\"Program\">{findWord}</style></link>";
         }
 
-        text.text = string.Join(" ", texts).Replace("Đ ", "\n").Replace("Đ", "").Replace("<tab>", "    ");
+        text.text = string.Join(" ", texts).Replace("Đ ", "\n").Replace("Đ", "").Replace("<tab>", "    ").Replace("( ", "(").Replace(" )", ")");
     }
 
     private void CheckForLinkAtMousePosition()
@@ -85,7 +89,7 @@ public class ProgrammingArea : MonoBehaviour
 
         TMP_LinkInfo linkInfo = text.textInfo.linkInfo[intersectingLink];
 
-        OnHoverLinkEvent?.Invoke(linkInfo.GetLinkID(), mousePos);
+        OnHoverLinkEvent?.Invoke(linkInfo.GetLinkID(), mousePos, linkInfo.GetLinkText());
         currentlyActiveLinkedElement = intersectingLink;
     }
 }
