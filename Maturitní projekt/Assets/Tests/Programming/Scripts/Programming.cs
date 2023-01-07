@@ -22,7 +22,7 @@ public class Programming : MonoBehaviour
         ProgrammingArea.OnCloseTooltipEvent -= CloseTooltip;
     }
 
-    private void GetTooltipInfo(string keyword, Vector3 mousePos, string linkText)
+    private void GetTooltipInfo(string linkId, Vector3 mousePos, string linkText)
     {
         foreach (ProgramItem item in programItems)
         {
@@ -31,8 +31,7 @@ public class Programming : MonoBehaviour
                 if (!tooltipContainer.gameObject.activeInHierarchy)
                 {
                     tooltipContainer.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
-                    tooltipButton.InstantiateButtons(item.replaceWords, linkText);
-                    Debug.Log(tooltip.GetHeight());
+                    tooltipButton.InstantiateButtons(item.replaceWords, linkText, linkId);
                     tooltipContainer.SetActive(true);
                 }
                 return;

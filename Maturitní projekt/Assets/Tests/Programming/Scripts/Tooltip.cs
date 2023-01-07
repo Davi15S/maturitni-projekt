@@ -16,7 +16,6 @@ public class Tooltip : MonoBehaviour
 
     public void SetHeight(float height, float width)
     {
-        Debug.Log(width);
         image.rectTransform.sizeDelta = new Vector2(width, height + 20);
         rt.sizeDelta = new Vector2(width, height + 20);
     }

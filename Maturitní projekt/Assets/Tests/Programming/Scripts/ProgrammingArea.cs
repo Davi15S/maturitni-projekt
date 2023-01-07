@@ -8,18 +8,17 @@ using System.Linq;
 
 public class ProgrammingArea : MonoBehaviour
 {
-    [SerializeField] private Button buttonPrefab;
-    [SerializeField] private GameObject buttonParent;
     private string initText;
     private Canvas canvas;
     private TextMeshProUGUI text;
     private string[] texts;
     private List<ProgramItem> programItems;
+    private Tooltip tooltip;
 
     private RectTransform textBoxRectTransform;
     private int currentlyActiveLinkedElement;
 
-    private TooltipHandler tooltip;
+    private TooltipHandler tooltipHandler;
     public delegate void CloseTooltipEvent();
     public static event CloseTooltipEvent OnCloseTooltipEvent;
 
@@ -33,10 +32,10 @@ public class ProgrammingArea : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         text.text = initText;
         text.ForceMeshUpdate();
-        tooltip = GetComponentInParent<TooltipHandler>();
+        tooltipHandler = GetComponentInParent<TooltipHandler>();
         programItems = GetComponentInParent<Programming>().programItems;
 
-
+        tooltip = GetComponentInChildren<Tooltip>();
         textBoxRectTransform = GetComponentInChildren<RectTransform>();
     }
 
@@ -65,7 +64,7 @@ public class ProgrammingArea : MonoBehaviour
 
         foreach (int i in indexes)
         {
-            texts[i] = $"<link=\"{findWord}{i}\"><style=\"Program\">{findWord}</style></link>";
+            texts[i] = $"<style=\"Program\"><link=\"{findWord}{i}\">{findWord}</link></style>";
         }
 
         text.text = string.Join(" ", texts).Replace("Đ ", "\n").Replace("Đ", "").Replace("<tab>", "    ").Replace("( ", "(").Replace(" )", ")");
@@ -81,7 +80,7 @@ public class ProgrammingArea : MonoBehaviour
 
         int intersectingLink = TMP_TextUtilities.FindIntersectingLink(text, mousePos, null);
 
-        if (currentlyActiveLinkedElement != intersectingLink && !tooltip.MouseOver())
+        if (currentlyActiveLinkedElement != intersectingLink && !tooltipHandler.MouseOver())
             OnCloseTooltipEvent?.Invoke();
 
         if (intersectingLink == -1)
@@ -91,5 +90,26 @@ public class ProgrammingArea : MonoBehaviour
 
         OnHoverLinkEvent?.Invoke(linkInfo.GetLinkID(), mousePos, linkInfo.GetLinkText());
         currentlyActiveLinkedElement = intersectingLink;
+    }
+
+    public void SetWord(string linkId, string replaceWord)
+    {
+        string currentLinkText = "";
+        foreach (TMP_LinkInfo item in text.textInfo.linkInfo)
+        {
+            if (item.GetLinkID() == linkId)
+            {
+                currentLinkText = item.GetLinkText();
+            }
+        }
+
+        int index = text.text.IndexOf(linkId);
+        string str = text.text.Substring(index, (currentLinkText.Length + linkId.Length + 3));
+        string[] arr = text.text.Split(str);
+        string replacedWord = str.Replace(currentLinkText, replaceWord);
+        text.text = string.Join(replacedWord, arr);
+
+        tooltip.GetComponent<Transform>().gameObject.SetActive(false);
+        tooltip.GetComponentInChildren<TooltipButton>().DestroyChildrens();
     }
 }

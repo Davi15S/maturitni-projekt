@@ -19,7 +19,7 @@ public class TooltipButton : MonoBehaviour
         tooltip = GetComponentInParent<Tooltip>();
     }
 
-    public void InstantiateButtons(List<string> words, string currentLinkText)
+    public void InstantiateButtons(List<string> words, string currentLinkText, string linkId)
     {
         if (transform.childCount < words.Count - 1)
         {
@@ -30,6 +30,7 @@ public class TooltipButton : MonoBehaviour
                     Button obstacle = Instantiate(button);
                     obstacle.transform.SetParent(this.transform);
                     obstacle.GetComponentInChildren<TextMeshProUGUI>().text = word;
+                    obstacle.GetComponent<ProgrammingButton>().SetLinkId(linkId);
                     height += obstacle.GetComponent<RectTransform>().rect.height + 5;
                     width = obstacle.GetComponent<RectTransform>().rect.width;
                 }
