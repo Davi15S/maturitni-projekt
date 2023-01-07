@@ -61,12 +61,10 @@ public class ProgrammingArea : MonoBehaviour
     private void InitProgramming(string findWord)
     {
         int[] indexes = texts.Select((item, i) => item == findWord ? i : -1).Where(i => i != -1).ToArray();
-
         foreach (int i in indexes)
         {
             texts[i] = $"<style=\"Program\"><link=\"{findWord}{i}\">{findWord}</link></style>";
         }
-
         text.text = string.Join(" ", texts).Replace("Đ ", "\n").Replace("Đ", "").Replace("<tab>", "    ").Replace("( ", "(").Replace(" )", ")");
     }
 
@@ -78,6 +76,7 @@ public class ProgrammingArea : MonoBehaviour
         if (!isIntersectingRectTransform)
             return;
 
+        int intersectingWord = TMP_TextUtilities.FindIntersectingWord(text, mousePos, null);
         int intersectingLink = TMP_TextUtilities.FindIntersectingLink(text, mousePos, null);
 
         if (currentlyActiveLinkedElement != intersectingLink && !tooltipHandler.MouseOver())
@@ -88,7 +87,17 @@ public class ProgrammingArea : MonoBehaviour
 
         TMP_LinkInfo linkInfo = text.textInfo.linkInfo[intersectingLink];
 
-        OnHoverLinkEvent?.Invoke(linkInfo.GetLinkID(), mousePos, linkInfo.GetLinkText());
+        int firstcharacterIndex = text.textInfo.wordInfo[intersectingWord].firstCharacterIndex;
+        int lastCharacterIndex = text.textInfo.wordInfo[intersectingWord].lastCharacterIndex;
+
+        Vector3 bottomLeft = text.textInfo.characterInfo[firstcharacterIndex].bottomLeft;
+        Vector3 bottomRight = text.textInfo.characterInfo[lastCharacterIndex].bottomRight;
+
+        Vector3 worldBottomLeft = text.transform.TransformPoint(bottomLeft);
+        Vector3 worldBottomRight = text.transform.TransformPoint(bottomRight);
+
+
+        OnHoverLinkEvent?.Invoke(linkInfo.GetLinkID(), (worldBottomLeft + worldBottomRight) / 2, linkInfo.GetLinkText());
         currentlyActiveLinkedElement = intersectingLink;
     }
 

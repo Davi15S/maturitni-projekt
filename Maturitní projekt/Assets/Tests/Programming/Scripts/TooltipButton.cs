@@ -27,7 +27,7 @@ public class TooltipButton : MonoBehaviour
             {
                 if (word != currentLinkText)
                 {
-                    Button obstacle = Instantiate(button);
+                    Button obstacle = Instantiate(button, this.gameObject.transform, false);
                     obstacle.transform.SetParent(this.transform);
                     obstacle.GetComponentInChildren<TextMeshProUGUI>().text = word;
                     obstacle.GetComponent<ProgrammingButton>().SetLinkId(linkId);

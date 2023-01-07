@@ -30,7 +30,7 @@ public class Programming : MonoBehaviour
             {
                 if (!tooltipContainer.gameObject.activeInHierarchy)
                 {
-                    tooltipContainer.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+                    tooltipContainer.transform.position = new Vector3(mousePos.x, mousePos.y + 5, 0);
                     tooltipButton.InstantiateButtons(item.replaceWords, linkText, linkId);
                     tooltipContainer.SetActive(true);
                 }
