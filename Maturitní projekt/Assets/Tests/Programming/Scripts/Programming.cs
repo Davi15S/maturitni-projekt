@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Programming : MonoBehaviour
 {
-    [TextArea(5, 20)]
-    [SerializeField] public string initText;
     [SerializeField] private GameObject tooltipContainer;
     [SerializeField] public List<ProgramItem> programItems;
     [SerializeField] private TooltipButton tooltipButton;

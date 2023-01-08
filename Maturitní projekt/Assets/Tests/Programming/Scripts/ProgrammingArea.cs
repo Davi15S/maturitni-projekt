@@ -27,11 +27,8 @@ public class ProgrammingArea : MonoBehaviour
 
     void Awake()
     {
-        initText = GetComponentInParent<Programming>().initText;
         text = GetComponentInChildren<TextMeshProUGUI>();
         canvas = GetComponentInParent<Canvas>();
-        text.text = initText;
-        text.ForceMeshUpdate();
         tooltipHandler = GetComponentInParent<TooltipHandler>();
         programItems = GetComponentInParent<Programming>().programItems;
 
@@ -41,6 +38,10 @@ public class ProgrammingArea : MonoBehaviour
 
     void Start()
     {
+        initText = ProgrammingManager.instance.GetLevel().code.Replace("<newLine>", System.Environment.NewLine);
+        text.text = initText;
+        text.ForceMeshUpdate();
+
         char[] seperators = new char[] { ' ' };
         texts = initText.Replace("\n", "Đ ").Replace("(", "( ").Replace(")", " )").Split(seperators, StringSplitOptions.RemoveEmptyEntries);
 
@@ -51,6 +52,8 @@ public class ProgrammingArea : MonoBehaviour
                 InitProgramming(word);
             }
         }
+        text.ForceMeshUpdate();
+        ProgrammingManager.instance.SetLinks(text.textInfo.linkInfo);
     }
 
     void Update()
@@ -88,10 +91,9 @@ public class ProgrammingArea : MonoBehaviour
         TMP_LinkInfo linkInfo = text.textInfo.linkInfo[intersectingLink];
 
         int firstcharacterIndex = text.textInfo.wordInfo[intersectingWord].firstCharacterIndex;
-        int lastCharacterIndex = text.textInfo.wordInfo[intersectingWord].lastCharacterIndex;
 
         Vector3 bottomLeft = text.textInfo.characterInfo[firstcharacterIndex].bottomLeft;
-        Vector3 bottomRight = text.textInfo.characterInfo[lastCharacterIndex].bottomRight;
+        Vector3 bottomRight = text.textInfo.characterInfo[firstcharacterIndex].bottomRight;
 
         Vector3 worldBottomLeft = text.transform.TransformPoint(bottomLeft);
         Vector3 worldBottomRight = text.transform.TransformPoint(bottomRight);
@@ -120,5 +122,7 @@ public class ProgrammingArea : MonoBehaviour
 
         tooltip.GetComponent<Transform>().gameObject.SetActive(false);
         tooltip.GetComponentInChildren<TooltipButton>().DestroyChildrens();
+        text.ForceMeshUpdate();
+        ProgrammingManager.instance.SetLinks(text.textInfo.linkInfo);
     }
 }
