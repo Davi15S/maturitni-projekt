@@ -111,9 +111,4 @@ public class Cable : MonoBehaviour
     {
         return isPositive;
     }
-
-    public LogicGateType GetType()
-    {
-        return type;
-    }
 }
