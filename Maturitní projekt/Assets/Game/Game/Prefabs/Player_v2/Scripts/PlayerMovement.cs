@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Time.timeScale = 1f;
     }
 
     void Update()

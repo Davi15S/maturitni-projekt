@@ -8,11 +8,13 @@ TagManager:
   - Cable
   - NPC
   - Ground
+  - LogicGate
+  - Tooltip
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cable
   - Water
   - UI
   - Tilemap

@@ -10,6 +10,7 @@ public class InputScript : MonoBehaviour
     private TilemapScript tilemapScript;
     private bool isPositive = false;
     private SpriteRenderer sprite;
+    [SerializeField] LayerMask mask;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class InputScript : MonoBehaviour
 
     private void CheckColliders()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0f, mask);
         if (colliders.Length <= 0)
         {
             isPositive = false;
@@ -38,9 +39,8 @@ public class InputScript : MonoBehaviour
             if (collider.gameObject != gameObject && collider.tag == "Cable" && collider.GetComponent<Cable>().GetConnection())
             {
                 isPositive = true;
-                Debug.Log(isPositive);
             }
-            else if (collider.tag != "LogicGate")
+            else
             {
                 isPositive = false;
             }

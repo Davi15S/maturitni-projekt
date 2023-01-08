@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5749641959406731117}
   - component: {fileID: 5749641959406731116}
   - component: {fileID: 5749641959406731107}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 5749641960018136642}
   - component: {fileID: 5749641960018136654}
   - component: {fileID: 6296116928932228080}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cable
   m_TagString: Cable
   m_Icon: {fileID: 0}
@@ -272,3 +272,4 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   isRobotics: 0
   isPositive: 0
+  isDebug: 0
