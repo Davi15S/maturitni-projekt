@@ -6,25 +6,39 @@ using UnityEngine;
 public class ProgrammingData
 {
     public List<Level> levels = new List<Level>();
+    private List<LevelContent> levelContents = new List<LevelContent>();
+    private System.Random rn = new System.Random();
 
     public ProgrammingData()
     {
-        Level level1 = new Level(1, new string[] { "for", "true", "foreach", "false" }, @"for (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}<newLine><newLine>while (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}");
+        levelContents.AddRange(new List<LevelContent> {
+            new LevelContent(new string[] { "for", "true", "foreach", "false" }, @"for (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}<newLine><newLine>while (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}"),
+            new LevelContent(new string[] { "foreach", "false" }, @"for (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}")
+        });
 
-        Level level2 = new Level(2, new string[] { "foreach", "false" }, @"for (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}");
-
-        levels.AddRange(new List<Level> { level1, level2 });
+        for (int i = 1; i < 3; i++)
+        {
+            int random = rn.Next(0, levelContents.Count);
+            Level level = new Level(i, levelContents[random].results, levelContents[random].code);
+            levels.Add(level);
+        }
     }
 
-    public class Level
+    public class Level : LevelContent
     {
         public int level;
-        public string[] results;
-        public string code;
-
-        public Level(int iLevel, string[] strResults, string strCode)
+        public Level(int iLevel, string[] strResults, string strCode) : base(strResults, strCode)
         {
             level = iLevel;
+        }
+    }
+
+    public class LevelContent
+    {
+        public string[] results;
+        public string code;
+        public LevelContent(string[] strResults, string strCode)
+        {
             results = strResults;
             code = strCode;
         }

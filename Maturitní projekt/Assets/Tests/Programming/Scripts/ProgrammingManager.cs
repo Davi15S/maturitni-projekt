@@ -9,7 +9,7 @@ public class ProgrammingManager : MonoBehaviour
     private TMP_LinkInfo[] links;
     public static ProgrammingManager instance { get; private set; }
     private ProgrammingData programmingData;
-    private int intLevel = 2;
+    private int intLevel = 1;
     private ProgrammingData.Level level;
 
     private void Start()
