@@ -4,18 +4,17 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+public enum Subject { Math, PE, Robotics }
 public class NpcScript : MonoBehaviour
 {
-    private enum Subject { Math, PE, Robotics }
     [SerializeField] private Animator visualCueAnimation;
-    [SerializeField] private Subject subject;
     private TextMeshPro floatingName;
-    [SerializeField] private string npcName;
+    [SerializeField] public NPCObject npc;
 
     void Start()
     {
         floatingName = GetComponentInChildren<TextMeshPro>();
-        floatingName.text = npcName;
+        floatingName.text = npc.name;
     }
 
     void Update()
@@ -23,7 +22,7 @@ public class NpcScript : MonoBehaviour
         if (visualCueAnimation.GetBool("playerInRange") && Input.GetKeyDown(KeyCode.E))
         {
             DataPersistenceManager.instance.SaveGame();
-            SceneManager.LoadSceneAsync(subject.ToString());
+            SceneManager.LoadSceneAsync(npc.subject.ToString());
         }
     }
     private void OnTriggerEnter2D(Collider2D collider)
