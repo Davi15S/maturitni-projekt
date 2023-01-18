@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ffdec77aab75545bafa0e284029172, type: 3}
+  m_Name: Robotics
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -1259077693, guid: af3896d231047574989ca39aafdfde8c, type: 3}
+  name: Daniel
+  subject: 2
+  controller: {fileID: 9100000, guid: a09f9dd93f0264e4392093be982f1397, type: 2}

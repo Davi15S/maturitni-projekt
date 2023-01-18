@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public enum Subject { Math, PE, Robotics }
+public enum Subject { Math, PE, Robotics, Programming }
 public class NpcScript : MonoBehaviour
 {
     [SerializeField] private Animator visualCueAnimation;
