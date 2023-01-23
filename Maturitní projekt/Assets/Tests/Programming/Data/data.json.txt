@@ -6,7 +6,7 @@
         },
         {
             "code": "for (Gameobject floor in floors)<newLine>{<newLine><tab>floor.setActive(true)<newLine>}",
-            "results": ["for", "true", "foreach", "false"]
+            "results": ["for", "false"]
         }
     ]
 }

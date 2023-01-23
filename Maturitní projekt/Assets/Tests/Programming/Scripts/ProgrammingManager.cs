@@ -31,6 +31,7 @@ public class ProgrammingManager : MonoBehaviour
         else { instance = this; }
 
         tasksList = JsonUtility.FromJson<TasksList>(textJSON.text);
+        Shuffle();
     }
     public void SetLinks(TMP_LinkInfo[] _links)
     {
@@ -40,10 +41,10 @@ public class ProgrammingManager : MonoBehaviour
 
     private void CheckResults()
     {
-        for (int i = 0; i < tasksList.tasks[0].results.Length; i++)
+        for (int i = 0; i < tasksList.tasks[intLevel - 1].results.Length; i++)
         {
-            Debug.Log($"{tasksList.tasks[0].results[i]} | {links[i].GetLinkText()} | {tasksList.tasks[0].results[i] == links[i].GetLinkText()}");
-            if (tasksList.tasks[0].results[i] != links[i].GetLinkText())
+            Debug.Log($"{tasksList.tasks[intLevel - 1].results[i]} | {links[i].GetLinkText()} | {tasksList.tasks[intLevel - 1].results[i] == links[i].GetLinkText()}");
+            if (tasksList.tasks[intLevel - 1].results[i] != links[i].GetLinkText())
                 return;
         }
         Debug.LogWarning("Vyhrál jsi!");
@@ -51,6 +52,17 @@ public class ProgrammingManager : MonoBehaviour
 
     public string GetCode()
     {
-        return tasksList.tasks[0].code.Replace("<newLine>", System.Environment.NewLine);
+        return tasksList.tasks[intLevel - 1].code.Replace("<newLine>", System.Environment.NewLine);
+    }
+
+    private void Shuffle()
+    {
+        for (int i = 0; i < tasksList.tasks.Length; i++)
+        {
+            int rnd = Random.Range(0, tasksList.tasks.Length);
+            Task tempGO = tasksList.tasks[rnd];
+            tasksList.tasks[rnd] = tasksList.tasks[i];
+            tasksList.tasks[i] = tempGO;
+        }
     }
 }
