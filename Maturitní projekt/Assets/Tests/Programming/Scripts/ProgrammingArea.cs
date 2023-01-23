@@ -38,7 +38,7 @@ public class ProgrammingArea : MonoBehaviour
 
     void Start()
     {
-        initText = ProgrammingManager.instance.GetLevel().code.Replace("<newLine>", System.Environment.NewLine);
+        initText = ProgrammingManager.instance.GetCode();
         text.text = initText;
         text.ForceMeshUpdate();
 
