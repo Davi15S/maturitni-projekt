@@ -912,4 +912,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1882504290}
-  textJSON: {fileID: 4900000, guid: 43672d4cdc53c06449359049155254b1, type: 3}
+  textJSON: {fileID: 4900000, guid: d21396fb6a81e744490a7e21aab705af, type: 3}
