@@ -4,13 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public enum Subject { Math, PE, Robotics, Programming }
+public enum Subject { Math, PE, Robotics, Programming, Network, Czech }
 public class NpcScript : MonoBehaviour
 {
     [SerializeField] private Animator visualCueAnimation;
     private TextMeshPro floatingName;
     [SerializeField] public NPCObject npc;
-
     void Start()
     {
         floatingName = GetComponentInChildren<TextMeshPro>();
@@ -25,6 +24,7 @@ public class NpcScript : MonoBehaviour
             SceneManager.LoadSceneAsync(npc.subject.ToString());
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
@@ -38,5 +38,13 @@ public class NpcScript : MonoBehaviour
         {
             visualCueAnimation.SetBool("playerInRange", false);
         }
+    }
+    public void SetHidden()
+    {
+        this.gameObject.SetActive(false);
+    }
+    public Subject GetSubject()
+    {
+        return npc.subject;
     }
 }
