@@ -14,7 +14,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject totalNumber;
     [SerializeField] private GameObject cablesObj;
     [SerializeField] private GameObject goalsObj;
-    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject debugText;
 
     private GenerateCableNumber[] cables;
     private GoalScript[] goals;
@@ -48,9 +48,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     {
         cables = cablesObj.GetComponentsInChildren<GenerateCableNumber>();
         goals = goalsObj.GetComponentsInChildren<GoalScript>();
-
         CalculateResultNumber();
-
         displayNumber.GetComponent<TextMeshProUGUI>().text = resultNumber.ToString();
         totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
     }
@@ -72,14 +70,17 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     // Spočítá výsledek, ke kterýmu se musí uživatel dostat
     private void CalculateResultNumber()
     {
+        debugText.GetComponent<TextMeshProUGUI>().text = "Initing quiz!";
         cables = cables.OrderBy(i => Random.value).ToArray();
         for (int i = 0; i < cables.Length; i++)
         {
             // Debug text
             Debug.Log(cables[i].GetGeneratedNumber() + "|" + goals[i].GetGeneratedNumber() + "|" + goals[i].GetMathOperation());
 
-            resultNumber += CalculateNumber(cables[i].GetGeneratedNumber(), goals[i].GetGeneratedNumber(), goals[i].GetMathOperation());
+            resultNumber = resultNumber + CalculateNumber(cables[i].GetGeneratedNumber(), goals[i].GetGeneratedNumber(), goals[i].GetMathOperation());
+            Debug.Log(cables[i].GetGeneratedNumber());
         }
+        debugText.GetComponent<TextMeshProUGUI>().text += resultNumber;
         resultNumber = RoundNumber(resultNumber);
     }
 
