@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private GameObject display;
     [SerializeField] private TextMeshProUGUI toBaseString;
@@ -18,6 +18,18 @@ public class NetworkManager : MonoBehaviour
     public static NetworkManager instance { get; private set; }
     private bool isToDecimal;
     System.Random rn = new System.Random();
+    private GameData.Level[] levels;
+    private int level;
+
+    public void LoadData(GameData data)
+    {
+        this.level = data.level;
+        this.levels = data.levels;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.levels = this.levels;
+    }
 
     void Start()
     {
@@ -78,15 +90,20 @@ public class NetworkManager : MonoBehaviour
         {
             if (displayNumber.ToString().Equals(str))
             {
-                Debug.LogWarning("Vyhrál jsi!");
+                GameWon();
             }
         }
         else
         {
             if (result.Equals(str))
             {
-                Debug.LogWarning("Vyhrál jsi!");
+                GameWon();
             }
         }
+    }
+
+    private void GameWon()
+    {
+        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Network);
     }
 }

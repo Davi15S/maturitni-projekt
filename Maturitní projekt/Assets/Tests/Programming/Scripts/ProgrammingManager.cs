@@ -16,7 +16,7 @@ public class TasksList
     public Task[] tasks;
 }
 
-public class ProgrammingManager : MonoBehaviour
+public class ProgrammingManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private TextMeshProUGUI textMeshPro;
     private TMP_LinkInfo[] links;
@@ -24,6 +24,18 @@ public class ProgrammingManager : MonoBehaviour
     private int intLevel = 1;
     [SerializeField] private TextAsset textJSON;
     private TasksList tasksList = new TasksList();
+    private GameData.Level[] levels;
+    private int level;
+
+    public void LoadData(GameData data)
+    {
+        this.level = data.level;
+        this.levels = data.levels;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.levels = this.levels;
+    }
 
     private void Start()
     {
@@ -47,7 +59,7 @@ public class ProgrammingManager : MonoBehaviour
             if (tasksList.tasks[intLevel - 1].results[i] != links[i].GetLinkText())
                 return;
         }
-        Debug.LogWarning("Vyhrál jsi!");
+        GameWon();
     }
 
     public string GetCode()
@@ -64,5 +76,10 @@ public class ProgrammingManager : MonoBehaviour
             tasksList.tasks[rnd] = tasksList.tasks[i];
             tasksList.tasks[i] = tempGO;
         }
+    }
+    private void GameWon()
+    {
+        Debug.LogWarning("Vyhrál jsi!");
+        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Programming);
     }
 }

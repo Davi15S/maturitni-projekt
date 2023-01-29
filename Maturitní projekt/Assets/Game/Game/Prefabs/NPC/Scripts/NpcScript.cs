@@ -10,6 +10,7 @@ public class NpcScript : MonoBehaviour
     [SerializeField] private Animator visualCueAnimation;
     private TextMeshPro floatingName;
     [SerializeField] public NPCObject npc;
+    private bool isDisabled;
     void Start()
     {
         floatingName = GetComponentInChildren<TextMeshPro>();
@@ -18,7 +19,7 @@ public class NpcScript : MonoBehaviour
 
     void Update()
     {
-        if (visualCueAnimation.GetBool("playerInRange") && Input.GetKeyDown(KeyCode.E))
+        if (visualCueAnimation.GetBool("playerInRange") && Input.GetKeyDown(KeyCode.E) && !isDisabled)
         {
             DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync(npc.subject.ToString());
@@ -27,14 +28,14 @@ public class NpcScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player" && !isDisabled)
         {
             visualCueAnimation.SetBool("playerInRange", true);
         }
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player" && !isDisabled)
         {
             visualCueAnimation.SetBool("playerInRange", false);
         }
@@ -54,5 +55,10 @@ public class NpcScript : MonoBehaviour
     public void SetActive()
     {
         this.gameObject.SetActive(true);
+    }
+    public void SetDisabled()
+    {
+        Debug.Log($"Task is already finished! | Subject: {npc.subject} | Name: {npc.name}");
+        isDisabled = true;
     }
 }
