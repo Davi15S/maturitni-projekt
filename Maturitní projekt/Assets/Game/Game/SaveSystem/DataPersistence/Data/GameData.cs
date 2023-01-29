@@ -7,6 +7,7 @@ public class GameData
     public int floor;
     public Vector3 playerPosition;
     public Level[] levels;
+    [System.Serializable]
     public class Level
     {
         public int level;
@@ -18,14 +19,15 @@ public class GameData
         }
     }
 
+    [System.Serializable]
     public class LevelSubject
     {
         public Subject subject;
-        public bool progress;
-        public LevelSubject(Subject subject, bool progress)
+        public bool finished;
+        public LevelSubject(Subject subject, bool finished)
         {
             this.subject = subject;
-            this.progress = progress;
+            this.finished = finished;
         }
     }
 

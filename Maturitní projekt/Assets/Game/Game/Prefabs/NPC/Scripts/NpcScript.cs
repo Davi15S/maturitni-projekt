@@ -47,4 +47,12 @@ public class NpcScript : MonoBehaviour
     {
         return npc.subject;
     }
+    public string GetName()
+    {
+        return npc.name;
+    }
+    public void SetActive()
+    {
+        this.gameObject.SetActive(true);
+    }
 }

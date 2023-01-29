@@ -24,6 +24,7 @@ public class NPCManager : MonoBehaviour, IDataPersistence
             {
                 foreach (NpcScript npc in npcs)
                 {
+                    npc.SetActive();
                     if (!gameLevel.subjects.Any(x => x.subject == npc.GetSubject()))
                     {
                         npc.SetHidden();

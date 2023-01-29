@@ -2232,6 +2232,7 @@ MonoBehaviour:
   totalNumber: {fileID: 123793459}
   cablesObj: {fileID: 502547925}
   goalsObj: {fileID: 704878193}
+  gameOverCanvas: {fileID: 0}
 --- !u!1001 &1210335124
 PrefabInstance:
   m_ObjectHideFlags: 0
