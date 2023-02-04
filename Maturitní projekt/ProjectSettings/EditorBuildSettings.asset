@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tests/Network.unity
     guid: f14fcc8fcf720fc439843e3271008f63
+  - enabled: 1
+    path: Assets/Scenes/Tests/Czech.unity
+    guid: bcbed43623d7fe44ca7676d25b208da7
   m_configObjects: {}

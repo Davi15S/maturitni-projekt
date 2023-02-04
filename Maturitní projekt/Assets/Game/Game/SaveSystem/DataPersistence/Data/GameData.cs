@@ -36,6 +36,6 @@ public class GameData
         this.floor = 0;
         playerPosition = new Vector3(0.4f, -0.9f, 0f);
         this.level = 1;
-        this.levels = new Level[] { new Level(1, new LevelSubject[] { new LevelSubject(Subject.Math, false), new LevelSubject(Subject.Robotics, false), new LevelSubject(Subject.PE, false) }), new Level(2, new LevelSubject[] { new LevelSubject(Subject.Programming, false), new LevelSubject(Subject.Math, false), new LevelSubject(Subject.Network, false) }), new Level(3, new LevelSubject[] { new LevelSubject(Subject.Programming, false), new LevelSubject(Subject.Math, false), new LevelSubject(Subject.PE, false) }), new Level(4, new LevelSubject[] { new LevelSubject(Subject.Math, false), new LevelSubject(Subject.Robotics, false), new LevelSubject(Subject.Programming, false) }) };
+        this.levels = new Level[] { new Level(1, new LevelSubject[] { new LevelSubject(Subject.Math, false), new LevelSubject(Subject.Robotics, false), new LevelSubject(Subject.PE, false) }), new Level(2, new LevelSubject[] { new LevelSubject(Subject.Programming, false), new LevelSubject(Subject.Math, false), new LevelSubject(Subject.Network, false) }), new Level(3, new LevelSubject[] { new LevelSubject(Subject.Programming, false), new LevelSubject(Subject.Math, false), new LevelSubject(Subject.PE, false) }), new Level(4, new LevelSubject[] { new LevelSubject(Subject.Math, false), new LevelSubject(Subject.Czech, false), new LevelSubject(Subject.Programming, false) }) };
     }
 }
