@@ -75,4 +75,25 @@ public class DataPersistenceManager : MonoBehaviour
     }
 
     public bool HasGameData() { return gameData != null; }
+
+    public void FinishQuiz(GameData.Level[] levels, int level, Subject subject)
+    {
+        foreach (GameData.Level gameLevel in levels)
+        {
+            if (level == gameLevel.level)
+            {
+                foreach (GameData.LevelSubject levelSubject in gameLevel.subjects)
+                {
+                    if (levelSubject.subject == subject)
+                    {
+                        Debug.Log($"Level: {level} | Subject: {levelSubject.subject.ToString()}");
+                        Debug.Log($"Progress:  {levelSubject.finished}");
+                        levelSubject.finished = true;
+                    }
+                }
+            }
+        }
+
+        DataPersistenceManager.instance.SaveGame();
+    }
 }

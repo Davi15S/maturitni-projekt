@@ -6,7 +6,7 @@ using System.Linq;
 
 public enum MathOperations { ADD, SUBSTRACT, MULTIPLY, DIVIDE }
 
-public class GeneratedNumberManager : MonoBehaviour
+public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
 {
     public static GeneratedNumberManager instance { get; private set; }
 
@@ -14,12 +14,25 @@ public class GeneratedNumberManager : MonoBehaviour
     [SerializeField] private GameObject totalNumber;
     [SerializeField] private GameObject cablesObj;
     [SerializeField] private GameObject goalsObj;
+    [SerializeField] private GameObject debugText;
 
     private GenerateCableNumber[] cables;
     private GoalScript[] goals;
+    private GameData.Level[] levels;
+    private int level;
 
     private float calculatedTotalNumber;
     private float resultNumber;
+
+    public void LoadData(GameData data)
+    {
+        this.levels = data.levels;
+        this.level = data.level;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.levels = this.levels;
+    }
 
     void Awake()
     {
@@ -35,9 +48,7 @@ public class GeneratedNumberManager : MonoBehaviour
     {
         cables = cablesObj.GetComponentsInChildren<GenerateCableNumber>();
         goals = goalsObj.GetComponentsInChildren<GoalScript>();
-
         CalculateResultNumber();
-
         displayNumber.GetComponent<TextMeshProUGUI>().text = resultNumber.ToString();
         totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
     }
@@ -49,20 +60,27 @@ public class GeneratedNumberManager : MonoBehaviour
         else { calculatedTotalNumber += RoundNumber(number); }
         calculatedTotalNumber = RoundNumber(calculatedTotalNumber);
         totalNumber.GetComponent<TextMeshProUGUI>().text = calculatedTotalNumber.ToString();
-        if (calculatedTotalNumber == resultNumber) { Debug.Log("Výhra"); }
+
+        if (calculatedTotalNumber == resultNumber)
+        {
+            GameWon();
+        }
     }
 
     // Spočítá výsledek, ke kterýmu se musí uživatel dostat
     private void CalculateResultNumber()
     {
+        debugText.GetComponent<TextMeshProUGUI>().text = "Initing quiz!";
         cables = cables.OrderBy(i => Random.value).ToArray();
         for (int i = 0; i < cables.Length; i++)
         {
             // Debug text
             Debug.Log(cables[i].GetGeneratedNumber() + "|" + goals[i].GetGeneratedNumber() + "|" + goals[i].GetMathOperation());
 
-            resultNumber += CalculateNumber(cables[i].GetGeneratedNumber(), goals[i].GetGeneratedNumber(), goals[i].GetMathOperation());
+            resultNumber = resultNumber + CalculateNumber(cables[i].GetGeneratedNumber(), goals[i].GetGeneratedNumber(), goals[i].GetMathOperation());
+            Debug.Log(cables[i].GetGeneratedNumber());
         }
+        debugText.GetComponent<TextMeshProUGUI>().text += resultNumber;
         resultNumber = RoundNumber(resultNumber);
     }
 
@@ -83,4 +101,9 @@ public class GeneratedNumberManager : MonoBehaviour
         }
     }
     private float RoundNumber(float number) { return Mathf.Round(number * 100.0f) * 0.01f; }
+
+    private void GameWon()
+    {
+        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Math);
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PEManager : MonoBehaviour
+public class PEManager : MonoBehaviour, IDataPersistence
 {
     public static PEManager instance { get; private set; }
 
@@ -11,6 +11,18 @@ public class PEManager : MonoBehaviour
     private float initialGameSpeed;
     [SerializeField] private float gameSpeedIncrease = 1.1f;
     private float maxGameSpeed;
+    private GameData.Level[] levels;
+    private int level;
+
+    public void LoadData(GameData data)
+    {
+        this.levels = data.levels;
+        this.level = data.level;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.levels = this.levels;
+    }
 
     private void Awake()
     {
@@ -42,6 +54,7 @@ public class PEManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPrefab.SetActive(true);
+        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.PE);
         Time.timeScale = 0f;
     }
 }
