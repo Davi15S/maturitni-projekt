@@ -20,8 +20,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1920
-    height: 947
+    width: 2560
+    height: 1307
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
       containerId: overlay-toolbar__top
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Tests/Czech/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: "C:\\N\u011Bco\\\u0160kola\\Maturitn\xED projekt\\Hra\\maturitni-projekt\\Maturitn\xED
+  m_LastProjectPath: "C:\\Users\\42077\\Documents\\GitHub\\maturitni-projekt\\Maturitn\xED
     projekt"
   m_LockTracker:
     m_IsLocked: 0
