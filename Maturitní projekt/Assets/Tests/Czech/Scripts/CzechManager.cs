@@ -31,6 +31,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject buttonsGameObject;
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private Timer timer;
+    [SerializeField] private GameObject gameWon;
     private Button[] buttons;
     private QuestionsList questionsList = new QuestionsList();
     public static CzechManager instance { get; private set; }
@@ -105,7 +106,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         if (question >= 3)
         {
-            GameWon();
+            FunctionTimer.Create(GameWon, 3f);
         }
         else
         {
@@ -127,7 +128,9 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
     private void GameWon()
     {
+        timer.gameObject.SetActive(false);
         Time.timeScale = 0f;
+        gameWon.gameObject.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Czech);
     }
 }
