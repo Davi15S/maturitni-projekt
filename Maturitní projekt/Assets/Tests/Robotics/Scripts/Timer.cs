@@ -28,8 +28,7 @@ public class Timer : MonoBehaviour
 
         if (timeCache <= 0)
         {
-            Time.timeScale = 0f;
-            gameCanvas.SetActive(true);
+            GameOver();
         }
         else
         {
@@ -42,5 +41,11 @@ public class Timer : MonoBehaviour
         slider.maxValue = gameTime;
         slider.value = gameTime;
         timeCache = gameTime;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
+        gameCanvas.SetActive(true);
     }
 }
