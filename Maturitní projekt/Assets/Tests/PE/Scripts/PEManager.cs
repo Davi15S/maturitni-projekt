@@ -53,8 +53,8 @@ public class PEManager : MonoBehaviour, IDataPersistence
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
         gameOverPrefab.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.PE);
-        Time.timeScale = 0f;
     }
 }

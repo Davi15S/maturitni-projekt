@@ -106,6 +106,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         if (question >= 3)
         {
+            timer.gameObject.SetActive(false);
             FunctionTimer.Create(GameWon, 3f);
         }
         else
@@ -128,7 +129,6 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
     private void GameWon()
     {
-        timer.gameObject.SetActive(false);
         Time.timeScale = 0f;
         gameWon.gameObject.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Czech);
