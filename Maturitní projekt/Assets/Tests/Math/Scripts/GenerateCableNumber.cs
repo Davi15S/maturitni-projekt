@@ -12,6 +12,7 @@ public class GenerateCableNumber : MonoBehaviour
     {
         generatedNumber = Random.Range(0, 11);
         GetComponentInChildren<Cable>().SetGeneratedNumber(generatedNumber);
+        GetComponentInChildren<Cable>().SetIsDragable(true);
 
         // Debug text
         displayNumber = GetComponentInChildren<TextMeshPro>();
@@ -22,5 +23,10 @@ public class GenerateCableNumber : MonoBehaviour
     public void SetCable()
     {
         GetComponentInChildren<Cable>().SetCable();
+    }
+
+    public void SetIsDragable()
+    {
+        GetComponentInChildren<Cable>().SetIsDragable(false);
     }
 }

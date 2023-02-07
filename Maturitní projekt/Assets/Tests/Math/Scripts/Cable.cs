@@ -16,6 +16,7 @@ public class Cable : MonoBehaviour
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
     private int generatedNumber;
+    private bool isDragable = true;
 
     private LogicGateType type;
 
@@ -43,7 +44,7 @@ public class Cable : MonoBehaviour
         Vector3 cellWorldPos = tileMapScript.GetCellWordlPosition();
 
         // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
-        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos) && !GeneratedNumberManager.instance.GetTransitionActive())
+        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos) && isDragable)
         {
             transform.position = cellWorldPos;
             tileMapScript.RemoveFromList(cursorPositionList.Last());
@@ -116,5 +117,10 @@ public class Cable : MonoBehaviour
             tileMapScript.AddToLogicGateList(transform.position);
             CheckConnection();
         }
+    }
+
+    public void SetIsDragable(bool isDragable)
+    {
+        this.isDragable = isDragable;
     }
 }

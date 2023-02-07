@@ -8,8 +8,8 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private float gameTime;
-    [SerializeField] private GameObject gameCanvas;
     private float timeCache;
+    [SerializeField] private GameOver gameOver;
 
     void OnEnable()
     {
@@ -46,6 +46,6 @@ public class Timer : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0f;
-        gameCanvas.SetActive(true);
+        gameOver.gameObject.SetActive(true);
     }
 }
