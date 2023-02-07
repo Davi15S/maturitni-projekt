@@ -9,6 +9,9 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject display;
     [SerializeField] private TextMeshProUGUI toBaseString;
     [SerializeField] private TextMeshProUGUI fromBaseString;
+    [SerializeField] private Timer timer;
+    [SerializeField] private GameObject gameWon;
+    [SerializeField] private ResultInput resultInput;
     private TextMeshProUGUI displayText;
     private int displayNumber;
     private string calculatedNumber;
@@ -20,6 +23,7 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
     System.Random rn = new System.Random();
     private GameData.Level[] levels;
     private int level;
+    private int taskLevel = 1;
 
     public void LoadData(GameData data)
     {
@@ -40,25 +44,8 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
         }
         instance = this;
         displayText = display.GetComponentInChildren<TextMeshProUGUI>();
-        _base = rn.Next(2, 10);
-        GenerateNumber();
-        CalculategeneratedNumber();
 
-        if (rn.Next(2) == 1)
-        {
-            toBaseString.text = $"Do {_base}kové soustavy!";
-            displayText.text = displayNumber.ToString();
-            isToDecimal = false;
-            Debug.Log(result);
-        }
-        else
-        {
-            displayText.text = result;
-            toBaseString.text = $"Do 10kové soustavy!";
-            fromBaseString.text = $"Z {_base}kové soustavy!";
-            isToDecimal = true;
-            Debug.Log(displayNumber.ToString());
-        }
+        SetGame();
     }
 
     void GenerateNumber()
@@ -90,20 +77,55 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
         {
             if (displayNumber.ToString().Equals(str))
             {
-                GameWon();
+                timer.gameObject.SetActive(false);
+                FunctionTimer.Create(GameWon, 3f);
             }
         }
         else
         {
             if (result.Equals(str))
             {
-                GameWon();
+                timer.gameObject.SetActive(false);
+                FunctionTimer.Create(GameWon, 3f);
             }
         }
     }
 
     private void GameWon()
     {
-        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Network);
+        if (taskLevel >= 3)
+        {
+            gameWon.SetActive(true);
+            Time.timeScale = 0f;
+            DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Network);
+        }
+
+        taskLevel++;
+        timer.gameObject.SetActive(true);
+        SetGame();
+    }
+
+    private void SetGame()
+    {
+        _base = rn.Next(2, 10);
+        GenerateNumber();
+        CalculategeneratedNumber();
+        resultInput.SetResultInput();
+
+        if (rn.Next(2) == 1)
+        {
+            toBaseString.text = $"Do {_base}kové soustavy!";
+            displayText.text = displayNumber.ToString();
+            isToDecimal = false;
+            Debug.Log(result);
+        }
+        else
+        {
+            displayText.text = result;
+            toBaseString.text = $"Do 10kové soustavy!";
+            fromBaseString.text = $"Z {_base}kové soustavy!";
+            isToDecimal = true;
+            Debug.Log(displayNumber.ToString());
+        }
     }
 }

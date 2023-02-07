@@ -16,6 +16,7 @@ public class Cable : MonoBehaviour
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
     private int generatedNumber;
+    private bool isDragable = true;
 
     private LogicGateType type;
 
@@ -27,20 +28,8 @@ public class Cable : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         tileMapScript = GetComponentInParent<TilemapScript>();
         tilemap = GetComponentInParent<Tilemap>();
-        // Testing committing to main branch : AGAIN 3x
 
-        if (!isRobotics)
-        {
-            transform.position = tilemap.GetCellCenterWorld(startCellPosition);
-            cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
-        }
-        else
-        {
-            transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
-            cursorPositionList.Add(transform.position);
-            tileMapScript.AddToLogicGateList(transform.position);
-            CheckConnection();
-        }
+        SetCable();
     }
 
     private void FixedUpdate()
@@ -55,7 +44,7 @@ public class Cable : MonoBehaviour
         Vector3 cellWorldPos = tileMapScript.GetCellWordlPosition();
 
         // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
-        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
+        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos) && isDragable)
         {
             transform.position = cellWorldPos;
             tileMapScript.RemoveFromList(cursorPositionList.Last());
@@ -110,5 +99,28 @@ public class Cable : MonoBehaviour
     public bool GetConnection()
     {
         return isPositive;
+    }
+
+    public void SetCable()
+    {
+        tileMapScript.ClearAllLists();
+        cursorPositionList.Clear();
+        if (!isRobotics)
+        {
+            transform.position = tilemap.GetCellCenterWorld(startCellPosition);
+            cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
+        }
+        else
+        {
+            transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
+            cursorPositionList.Add(transform.position);
+            tileMapScript.AddToLogicGateList(transform.position);
+            CheckConnection();
+        }
+    }
+
+    public void SetIsDragable(bool isDragable)
+    {
+        this.isDragable = isDragable;
     }
 }

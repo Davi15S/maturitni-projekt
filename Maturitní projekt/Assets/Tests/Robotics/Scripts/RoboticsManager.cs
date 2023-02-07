@@ -6,7 +6,11 @@ using System.Linq;
 public class RoboticsManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private GameObject goals;
+    [SerializeField] private GameObject cablesObj;
+    [SerializeField] private GameObject gameWon;
+    [SerializeField] private Timer timer;
     private InputScript[] inputs;
+    private Cable[] cables;
     public static RoboticsManager instance { get; private set; }
     private LogicGateType type = LogicGateType.AND;
     private GameData.Level[] levels;
@@ -31,6 +35,8 @@ public class RoboticsManager : MonoBehaviour, IDataPersistence
         {
             Destroy(this.gameObject);
         }
+
+        cables = cablesObj.GetComponentsInChildren<Cable>();
     }
 
     void Update()
@@ -46,11 +52,18 @@ public class RoboticsManager : MonoBehaviour, IDataPersistence
         inputs = goals.GetComponentsInChildren<InputScript>();
         if (inputs.All(x => x.GetConnection()) && !gameFinished)
         {
-            GameWon();
+            gameFinished = true;
+            timer.gameObject.SetActive(false);
+            for (int i = 0; i < cables.Length; i++)
+            {
+                cables[i].SetIsDragable(false);
+            }
+            FunctionTimer.Create(GameWon, 3f);
         }
     }
     private void GameWon()
     {
+        gameWon.gameObject.SetActive(true);
         gameFinished = true;
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Robotics);
     }
