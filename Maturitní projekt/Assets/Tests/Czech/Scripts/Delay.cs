@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CzechTimer : MonoBehaviour
+public class Delay : MonoBehaviour
 {
     private float gameTime;
 
