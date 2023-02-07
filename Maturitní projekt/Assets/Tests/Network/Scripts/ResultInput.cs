@@ -17,4 +17,8 @@ public class ResultInput : MonoBehaviour
     {
         NetworkManager.instance.CheckResult(inputField.text);
     }
+    public void SetResultInput()
+    {
+        inputField.text = "";
+    }
 }

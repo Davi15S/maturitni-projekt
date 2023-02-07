@@ -36,26 +36,6 @@ public class ProgrammingArea : MonoBehaviour
         textBoxRectTransform = GetComponentInChildren<RectTransform>();
     }
 
-    void Start()
-    {
-        initText = ProgrammingManager.instance.GetCode();
-        text.text = initText;
-        text.ForceMeshUpdate();
-
-        char[] seperators = new char[] { ' ' };
-        texts = initText.Replace("\n", "Đ ").Replace("(", "( ").Replace(")", " )").Split(seperators, StringSplitOptions.RemoveEmptyEntries);
-
-        foreach (ProgramItem item in programItems)
-        {
-            foreach (string word in item.replaceWords)
-            {
-                InitProgramming(word);
-            }
-        }
-        text.ForceMeshUpdate();
-        ProgrammingManager.instance.SetLinks(text.textInfo.linkInfo);
-    }
-
     void Update()
     {
         CheckForLinkAtMousePosition();
@@ -122,6 +102,26 @@ public class ProgrammingArea : MonoBehaviour
 
         tooltip.GetComponent<Transform>().gameObject.SetActive(false);
         tooltip.GetComponentInChildren<TooltipButton>().DestroyChildrens();
+        text.ForceMeshUpdate();
+        ProgrammingManager.instance.SetLinks(text.textInfo.linkInfo);
+    }
+
+    public void InitProgrammingArea()
+    {
+        initText = ProgrammingManager.instance.GetCode();
+        text.text = initText;
+        text.ForceMeshUpdate();
+
+        char[] seperators = new char[] { ' ' };
+        texts = initText.Replace("\n", "Đ ").Replace("(", "( ").Replace(")", " )").Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (ProgramItem item in programItems)
+        {
+            foreach (string word in item.replaceWords)
+            {
+                InitProgramming(word);
+            }
+        }
         text.ForceMeshUpdate();
         ProgrammingManager.instance.SetLinks(text.textInfo.linkInfo);
     }
