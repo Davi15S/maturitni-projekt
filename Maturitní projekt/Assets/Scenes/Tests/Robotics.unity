@@ -3309,6 +3309,10 @@ PrefabInstance:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 167372983}
+    - target: {fileID: 993164572, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
+      propertyPath: gameTime
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5200781142568100420, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3644,6 +3648,18 @@ PrefabInstance:
     - target: {fileID: 8322826527273824110, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322826527581242544, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 167372983}
+    - target: {fileID: 8322826527581242544, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322826527581242544, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameOver, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbded44afbc902e449deeef9b917efa0, type: 3}
