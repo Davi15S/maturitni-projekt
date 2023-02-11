@@ -171,8 +171,8 @@ Transform:
   m_GameObject: {fileID: 5749641960018136640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.3612, y: -0.7494, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.10784184, y: 0.11671995, z: 0.11545}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5749641959406731117}
   m_Father: {fileID: 0}
@@ -254,7 +254,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1693156, y: 1.1930319}
+  m_Size: {x: 2.7988565, y: 2.7919564}
   m_EdgeRadius: 0
 --- !u!114 &6296116928932228080
 MonoBehaviour:
@@ -270,6 +270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCellPosition: {x: -11, y: 4, z: 0}
   tilemap: {fileID: 0}
-  isRobotics: 1
-  isPositive: 1
+  isRobotics: 0
+  isPositive: 0
   isDebug: 0

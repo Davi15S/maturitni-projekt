@@ -10,7 +10,6 @@ public class LogicGateObject : ScriptableObject
 {
     public LogicGateType type;
     public Color color;
-    public Sprite sprite;
 
     public bool CheckConnection(InputScript[] array, LogicGateType logicGateType)
     {
