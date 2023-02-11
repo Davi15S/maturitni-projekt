@@ -1,128 +1,128 @@
 {
   "questions": [
     {
-      "question": "Ahoj",
+      "question": "Kdo napsal román 'Dobrý voják Švejk'?",
       "answers": [
         {
-          "answer": "a",
+          "answer": "Franz Kafka",
+          "result": false
+        },
+        {
+          "answer": "Milan Kundera",
+          "result": false
+        },
+        {
+          "answer": "Jaroslav Hašek",
           "result": true
         },
         {
-          "answer": "b",
-          "result": false
-        },
-        {
-          "answer": "c",
-          "result": false
-        },
-        {
-          "answer": "d",
+          "answer": "Karel Čapek",
           "result": false
         }
       ]
     },
     {
-      "question": "Jak",
+      "question": "Jak se jmenuje slavná sbírka pohádek od Boženy Němcové?",
       "answers": [
         {
-          "answer": "a",
+          "answer": "Holčička s lucernou",
+          "result": false
+        },
+        {
+          "answer": "Babička",
           "result": true
         },
         {
-          "answer": "b",
+          "answer": "Sněhurka a sedm trpaslíků",
           "result": false
         },
         {
-          "answer": "c",
-          "result": false
-        },
-        {
-          "answer": "d",
+          "answer": "Tygrované",
           "result": false
         }
       ]
     },
     {
-      "question": "se",
+      "question": "Kolik pádů se používá v češtině?",
       "answers": [
         {
-          "answer": "a",
+          "answer": "Sedm pádů",
           "result": true
         },
         {
-          "answer": "b",
+          "answer": "Čtyři pády",
           "result": false
         },
         {
-          "answer": "c",
+          "answer": "Šest pádů",
           "result": false
         },
         {
-          "answer": "d",
+          "answer": "Tři pády",
           "result": false
         }
       ]
     },
     {
-      "question": "máš",
+      "question": "Kdo napsal hru 'R.U.R.', která představila slovo 'robot'?",
       "answers": [
         {
-          "answer": "a",
+          "answer": "Josef Čapek",
+          "result": false
+        },
+        {
+          "answer": "Karel Poláček",
+          "result": false
+        },
+        {
+          "answer": "Karel Čapek",
           "result": true
         },
         {
-          "answer": "b",
-          "result": false
-        },
-        {
-          "answer": "c",
-          "result": false
-        },
-        {
-          "answer": "d",
+          "answer": "Eduard Bass",
           "result": false
         }
       ]
     },
     {
-      "question": "t",
+      "question": "Který český malíř je známý svými symbolistickými obrazy?",
       "answers": [
         {
-          "answer": "a",
+          "answer": "František Kupka",
+          "result": false
+        },
+        {
+          "answer": "Tomáš Baťa",
+          "result": false
+        },
+        {
+          "answer": "Alphonse Mucha",
           "result": true
         },
         {
-          "answer": "b",
-          "result": false
-        },
-        {
-          "answer": "c",
-          "result": false
-        },
-        {
-          "answer": "d",
+          "answer": "Mikoláš Aleš",
           "result": false
         }
       ]
     },
     {
-      "question": "ahoj",
+      "question": "Co je to infinitiv?",
       "answers": [
         {
-          "answer": "a",
+          "answer": "Čas slovesa",
+          "result": false
+        },
+        {
+          "answer": "Pád slovesa",
+          "result": false
+        },
+        {
+          "answer": "Druh slovesa",
+          "result": false
+        },
+        {
+          "answer": "Základ slovesa",
           "result": true
-        },
-        {
-          "answer": "b",
-          "result": false
-        },
-        {
-          "answer": "c",
-          "result": false
-        },
-        {
-          "answer": "d",
-          "result": false
         }
       ]
     }
