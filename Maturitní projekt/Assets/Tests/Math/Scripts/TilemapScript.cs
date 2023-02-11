@@ -37,7 +37,6 @@ public class TilemapScript : MonoBehaviour
                 Instantiate(testObject, cellWorldPos, Quaternion.identity, parent);
 
                 Vector3Int cellPos = tilemap.WorldToCell(cellWorldPos);
-                Debug.Log(cellPos);
                 CycleLogicGatePositions(cellPos, false);
             }
             else
@@ -76,7 +75,6 @@ public class TilemapScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Added to list: " + $"x: {x} | y: {y}");
                     AddToList(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)));
                 }
             }
