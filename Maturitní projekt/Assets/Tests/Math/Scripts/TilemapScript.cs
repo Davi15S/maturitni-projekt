@@ -96,11 +96,6 @@ public class TilemapScript : MonoBehaviour
     {
         blockedPos.RemoveAll(x => x == pos);
     }
-    public void ClearAllLists()
-    {
-        blockedPos.Clear();
-        logicGateBlockedPos.Clear();
-    }
     public List<Vector3> GetList()
     {
         return blockedPos;

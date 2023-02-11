@@ -8,44 +8,26 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private float gameTime;
-    private float timeCache;
-    [SerializeField] private GameOver gameOver;
-
-    void OnEnable()
-    {
-        Debug.Log("PrintOnEnable: script was enabled");
-        SetTimer();
-    }
+    [SerializeField] private GameObject gameCanvas;
 
     void Awake()
     {
-        SetTimer();
+        slider.maxValue = gameTime;
+        slider.value = gameTime;
     }
 
     void Update()
     {
-        timeCache -= Time.deltaTime;
+        gameTime -= Time.deltaTime;
 
-        if (timeCache <= 0)
+        if (gameTime <= 0)
         {
-            GameOver();
+            Time.timeScale = 0f;
+            gameCanvas.SetActive(true);
         }
         else
         {
-            slider.value = timeCache;
+            slider.value = gameTime;
         }
-    }
-
-    private void SetTimer()
-    {
-        slider.maxValue = gameTime;
-        slider.value = gameTime;
-        timeCache = gameTime;
-    }
-
-    public void GameOver()
-    {
-        Time.timeScale = 0f;
-        gameOver.gameObject.SetActive(true);
     }
 }

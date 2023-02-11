@@ -294,4 +294,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 5393953047840414557}
   gameTime: 10
-  gameOver: {fileID: 0}
+  lostGameCanvas: {fileID: 0}
