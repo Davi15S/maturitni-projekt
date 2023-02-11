@@ -19,14 +19,10 @@ public class TasksList
 public class ProgrammingManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private TextMeshProUGUI textMeshPro;
-    [SerializeField] private TextAsset textJSON;
-    [SerializeField] private Timer timer;
-    [SerializeField] private GameObject gameWon;
-    [SerializeField] private ProgrammingArea programmingArea;
-
     private TMP_LinkInfo[] links;
     public static ProgrammingManager instance { get; private set; }
-    private int taskLevel = 1;
+    private int intLevel = 1;
+    [SerializeField] private TextAsset textJSON;
     private TasksList tasksList = new TasksList();
     private GameData.Level[] levels;
     private int level;
@@ -48,8 +44,6 @@ public class ProgrammingManager : MonoBehaviour, IDataPersistence
 
         tasksList = JsonUtility.FromJson<TasksList>(textJSON.text);
         Shuffle();
-
-        programmingArea.InitProgrammingArea();
     }
     public void SetLinks(TMP_LinkInfo[] _links)
     {
@@ -59,19 +53,18 @@ public class ProgrammingManager : MonoBehaviour, IDataPersistence
 
     private void CheckResults()
     {
-        for (int i = 0; i < tasksList.tasks[taskLevel - 1].results.Length; i++)
+        for (int i = 0; i < tasksList.tasks[intLevel - 1].results.Length; i++)
         {
-            Debug.Log($"{tasksList.tasks[taskLevel - 1].results[i]} | {links[i].GetLinkText()} | {tasksList.tasks[taskLevel - 1].results[i] == links[i].GetLinkText()}");
-            if (tasksList.tasks[taskLevel - 1].results[i] != links[i].GetLinkText())
+            Debug.Log($"{tasksList.tasks[intLevel - 1].results[i]} | {links[i].GetLinkText()} | {tasksList.tasks[intLevel - 1].results[i] == links[i].GetLinkText()}");
+            if (tasksList.tasks[intLevel - 1].results[i] != links[i].GetLinkText())
                 return;
         }
-        timer.gameObject.SetActive(false);
-        FunctionTimer.Create(GameWon, 3f);
+        GameWon();
     }
 
     public string GetCode()
     {
-        return tasksList.tasks[taskLevel - 1].code.Replace("<newLine>", System.Environment.NewLine);
+        return tasksList.tasks[intLevel - 1].code.Replace("<newLine>", System.Environment.NewLine);
     }
 
     private void Shuffle()
@@ -86,17 +79,7 @@ public class ProgrammingManager : MonoBehaviour, IDataPersistence
     }
     private void GameWon()
     {
-        if (taskLevel == 2)
-        {
-            gameWon.gameObject.SetActive(true);
-            Time.timeScale = 0f;
-            DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Programming);
-        }
-        else
-        {
-            timer.gameObject.SetActive(true);
-            taskLevel++;
-            programmingArea.InitProgrammingArea();
-        }
+        Debug.LogWarning("Vyhrál jsi!");
+        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Programming);
     }
 }

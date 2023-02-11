@@ -485,9 +485,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7566045381887554215}
-        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
-        m_MethodName: GoBack
+      - m_Target: {fileID: 8322826527273824110}
+        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
