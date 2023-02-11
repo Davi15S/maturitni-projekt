@@ -16,7 +16,6 @@ public class Cable : MonoBehaviour
     private SpriteRenderer mySprite;
     private TilemapScript tileMapScript;
     private int generatedNumber;
-
     private LogicGateType type;
 
     [SerializeField] private bool isDebug;
@@ -27,7 +26,6 @@ public class Cable : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         tileMapScript = GetComponentInParent<TilemapScript>();
         tilemap = GetComponentInParent<Tilemap>();
-        // Testing committing to main branch : AGAIN 3x
 
         if (!isRobotics)
         {
@@ -63,6 +61,7 @@ public class Cable : MonoBehaviour
 
             if (!cursorPositionList.Contains(cellWorldPos))
             {
+                RotateCable(cellWorldPos, cursorPositionList.Last());
                 cursorPositionList.Add(cellWorldPos);
                 tileMapScript.AddToLogicGateList(cellWorldPos);
             }
@@ -71,6 +70,7 @@ public class Cable : MonoBehaviour
                 int index = cursorPositionList.FindIndex(x => x == cellWorldPos);
                 cursorPositionList.RemoveRange(index + 1, (cursorPositionList.Count - index - 1));
                 tileMapScript.RemoveRangeLogicGateList(index);
+                RotateCable(cursorPositionList.Last(), cursorPositionList[cursorPositionList.Count - 2]);
             }
         }
         else if (tilemap.GetTile(mouseCell) || tileMapScript.GetList().Contains(cellWorldPos)) { isDragged = false; }
@@ -110,5 +110,27 @@ public class Cable : MonoBehaviour
     public bool GetConnection()
     {
         return isPositive;
+    }
+
+    private void RotateCable(Vector3 currentPosition, Vector3 lastPosition)
+    {
+        Debug.Log(currentPosition - lastPosition);
+
+        if ((currentPosition.x - lastPosition.x) > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if ((currentPosition.x - lastPosition.x) < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 270);
+        }
+        else if ((currentPosition.y - lastPosition.y) < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if ((currentPosition.y - lastPosition.y) > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
     }
 }
