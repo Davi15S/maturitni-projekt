@@ -27,7 +27,12 @@ public class GoalScript : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         transform.position = tilemap.GetCellCenterWorld(startCellPosition);
-        SetGoal();
+        mathOperation = (MathOperations)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(MathOperations)).Length);
+
+        GenerateNumber();
+
+        defaultText = mathOperation.ToString() + " " + generatedNumber;
+        displayText.text = defaultText;
     }
     void Update()
     {
@@ -66,12 +71,7 @@ public class GoalScript : MonoBehaviour
         }
     }
 
-    public void GenerateNumber()
-    {
-        generatedNumber = UnityEngine.Random.Range(1, 11);
-        defaultText = mathOperation.ToString() + " " + generatedNumber;
-        displayText.text = defaultText;
-    }
+    private void GenerateNumber() { generatedNumber = UnityEngine.Random.Range(1, 11); }
     private float CalculateNumber()
     {
         dataSent[0] = true;
@@ -87,8 +87,4 @@ public class GoalScript : MonoBehaviour
     }
     public int GetGeneratedNumber() { return generatedNumber; }
     public MathOperations GetMathOperation() { return mathOperation; }
-    public void SetGoal()
-    {
-        mathOperation = (MathOperations)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(MathOperations)).Length);
-    }
 }

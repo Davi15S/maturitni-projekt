@@ -29,9 +29,8 @@ public class CzechManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TextAsset dataJson;
     [SerializeField] private TextMeshProUGUI questionCanvas;
     [SerializeField] private GameObject buttonsGameObject;
+    [SerializeField] private GameObject timer;
     [SerializeField] private GameObject gameOverCanvas;
-    [SerializeField] private Timer timer;
-    [SerializeField] private GameObject gameWon;
     private Button[] buttons;
     private QuestionsList questionsList = new QuestionsList();
     public static CzechManager instance { get; private set; }
@@ -57,6 +56,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         buttons = buttonsGameObject.GetComponentsInChildren<Button>();
         questionsList = JsonUtility.FromJson<QuestionsList>(dataJson.text);
+        timer.SetActive(false);
 
         Shuffle();
         SetQuestion();
@@ -83,15 +83,16 @@ public class CzechManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void SetQuestion()
+    public void SetQuestion()
     {
         questionCanvas.text = questionsList.questions[question].question;
         SetAnswers();
-        timer.gameObject.SetActive(true);
     }
 
     public void CheckAnswer(int index)
     {
+        timer.SetActive(true);
+
         for (int i = 0; i < buttons.Length; i++)
         {
             if (questionsList.questions[question].answers[i].result)
@@ -106,31 +107,26 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         if (question >= 3)
         {
-            timer.gameObject.SetActive(false);
-            FunctionTimer.Create(GameWon, 3f);
+            gameOverCanvas.SetActive(true);
+            GameWon();
+            Time.timeScale = 0f;
         }
         else
         {
             if (questionsList.questions[question].answers[index].result)
             {
                 Debug.Log("Odpověď byla správná!");
-                timer.gameObject.SetActive(false);
-                FunctionTimer.Create(SetQuestion, 3f);
                 question++;
             }
             else
             {
                 Debug.Log("Odpověď nebyla správná!");
-                timer.gameObject.SetActive(false);
-                FunctionTimer.Create(timer.GameOver, 3f);
             }
         }
     }
 
     private void GameWon()
     {
-        Time.timeScale = 0f;
-        gameWon.gameObject.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Czech);
     }
 }
