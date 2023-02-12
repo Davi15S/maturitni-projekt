@@ -2921,19 +2921,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2945,7 +2945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: tilemap
@@ -3874,19 +3874,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3898,7 +3898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: tilemap
@@ -4110,25 +4110,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cable
       objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136642, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -941239492, guid: ba1866c7e25352b4dac8d223a94e0bc0, type: 3}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.3092
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.3092
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.3092
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4169,26 +4153,6 @@ PrefabInstance:
     - target: {fileID: 5749641960018136643, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136654, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_Size.x
-      value: 0.25126296
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136654, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_Size.y
-      value: 0.25064352
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136654, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136654, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.104166664
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749641960018136654, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.16666667
       objectReference: {fileID: 0}
     - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: tilemap

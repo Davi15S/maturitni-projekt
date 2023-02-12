@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba1866c7e25352b4dac8d223a94e0bc0
+guid: 409bc0db7c176a843b1534187024a339
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,160 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ROBO_game_0
+      name: ROBO_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffc262e53fe353240aa8f1d619019026
-      internalID: 1334873649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_1
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 118
-        width: 5
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf6f7e1c3d6baef4faa23195b87f35eb
-      internalID: -941239492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_2
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 118
-        width: 5
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08cec243affd1064fb34a81213b68c45
-      internalID: -493707112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55c31f32d663e0042aaa0e7972961f42
-      internalID: 1646192753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_4
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 16
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62e2dd71b66fb0049873eac86c9893e6
-      internalID: 786074862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_5
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 16
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f54e32ed58510c4bba2b86d33997726
-      internalID: 1046621100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_6
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 16
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 718706de5db88da4e9f0f45ba32765de
-      internalID: 1404010146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ROBO_game_7
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 103
-        width: 32
-        height: 3
+        x: 159
+        y: 798
+        width: 482
+        height: 483
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd84e369272998549827eb220e12d647
-      internalID: 1167868270
+      spriteID: 357024cae70cea34bb2ffbe3050b5113
+      internalID: 1385929190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ROBO_game_8
+      name: ROBO_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 86
-        width: 32
-        height: 3
+        x: 689
+        y: 1180
+        width: 52
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,8 +139,218 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a65b0f57758b1f44caab3a9a326161c5
-      internalID: 79525466
+      spriteID: 838ea6bb07e61b345ad75a47d391b338
+      internalID: -295377932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_2
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1239
+        width: 12
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465e0b3be34b65f46b4978ffb4770b78
+      internalID: -1299117617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_3
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 1180
+        width: 51
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc1c45f3c781cf64788047be0d5f2636
+      internalID: 1859243264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_4
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 1239
+        width: 12
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb87d8ec7ba26ca4591f946dcdc1e802
+      internalID: -1518986511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_5
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1079
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35ceebc694fc6944b2032b29bfca862
+      internalID: -1572481816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_6
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1030
+        width: 321
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 471b1a1bff380a14294a1ac1b8c15b23
+      internalID: 929732578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 859
+        width: 321
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33ba94f570929324fb7a13899be0473b
+      internalID: -725479782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_8
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 482
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f8f3fc979a8fe849b8c39a6078b996c
+      internalID: 402033711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 159
+        width: 482
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd709313dabe4084391c93f4728ae999
+      internalID: -907492894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_10
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 159
+        width: 482
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49770e7c36cad274b8c718e940023982
+      internalID: -1147009292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_11
+      rect:
+        serializedVersion: 2
+        x: 2079
+        y: 159
+        width: 482
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a21b4ec949936154c8ea5583fd86cdb1
+      internalID: 950262741
       vertices: []
       indices: 
       edges: []
@@ -303,15 +366,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ROBO_game_1: -941239492
-      ROBO_game_5: 1046621100
-      ROBO_game_3: 1646192753
-      ROBO_game_4: 786074862
-      ROBO_game_7: 1167868270
-      ROBO_game_6: 1404010146
-      ROBO_game_8: 79525466
-      ROBO_game_2: -493707112
-      ROBO_game_0: 1334873649
+      ROBO_7: -725479782
+      ROBO_5: -1572481816
+      ROBO_9: -907492894
+      ROBO_8: 402033711
+      ROBO_10: -1147009292
+      ROBO_2: -1299117617
+      ROBO_0: 1385929190
+      ROBO_6: 929732578
+      ROBO_11: 950262741
+      ROBO_1: -295377932
+      ROBO_3: 1859243264
+      ROBO_4: -1518986511
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

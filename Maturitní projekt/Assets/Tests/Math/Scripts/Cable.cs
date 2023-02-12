@@ -10,6 +10,8 @@ public class Cable : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private bool isRobotics;
     [SerializeField] private bool isPositive;
+    [SerializeField] private Sprite spriteConnected;
+    [SerializeField] private Sprite spriteUnconnected;
 
     private bool isDragged = false;
     private List<Vector3> cursorPositionList = new List<Vector3>();
@@ -106,6 +108,7 @@ public class Cable : MonoBehaviour
     {
         type = logicType;
         isPositive = connection;
+        mySprite.sprite = connection ? spriteConnected : spriteUnconnected;
     }
     public bool GetConnection()
     {
