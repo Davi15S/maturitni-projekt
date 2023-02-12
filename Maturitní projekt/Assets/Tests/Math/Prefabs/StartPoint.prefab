@@ -81,7 +81,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.68, y: 0.186}
+  m_AnchoredPosition: {x: -2.28, y: 0.186}
   m_SizeDelta: {x: 0.2242, y: 0.2416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2422665292709504582
@@ -225,6 +225,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2422665291704051727}
     m_Modifications:
+    - target: {fileID: 5749641959406731116, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749641959406731116, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 291891f0559a6fb438ecd6b392481b07, type: 2}
     - target: {fileID: 5749641960018136640, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_Name
       value: Cable
@@ -282,6 +290,22 @@ PrefabInstance:
       value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 5749641960018136653, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: startCellPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: isPositive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: isRobotics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: startCellPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: startCellPosition.y
       value: 2
       objectReference: {fileID: 0}

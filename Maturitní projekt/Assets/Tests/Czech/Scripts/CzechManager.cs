@@ -31,6 +31,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject buttonsGameObject;
     [SerializeField] private GameObject timer;
     [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject gameWonCanvas;
     private Button[] buttons;
     private QuestionsList questionsList = new QuestionsList();
     public static CzechManager instance { get; private set; }
@@ -75,6 +76,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
     private void SetAnswers()
     {
+        timer.SetActive(true);
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = questionsList.questions[question].answers[i].answer;
@@ -91,8 +93,6 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
     public void CheckAnswer(int index)
     {
-        timer.SetActive(true);
-
         for (int i = 0; i < buttons.Length; i++)
         {
             if (questionsList.questions[question].answers[i].result)
@@ -107,9 +107,8 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         if (question >= 3)
         {
-            gameOverCanvas.SetActive(true);
-            GameWon();
-            Time.timeScale = 0f;
+            timer.SetActive(false);
+            FunctionTimer.Create(GameWon, 3f);
         }
         else
         {
@@ -117,16 +116,27 @@ public class CzechManager : MonoBehaviour, IDataPersistence
             {
                 Debug.Log("Odpověď byla správná!");
                 question++;
+                timer.SetActive(false);
+                FunctionTimer.Create(SetQuestion, 3f);
             }
             else
             {
                 Debug.Log("Odpověď nebyla správná!");
+                timer.SetActive(false);
+                FunctionTimer.Create(SetGameOverCanvas, 3f);
+
             }
         }
     }
 
     private void GameWon()
     {
+        gameWonCanvas.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Czech);
+    }
+
+    private void SetGameOverCanvas()
+    {
+        gameOverCanvas.SetActive(true);
     }
 }

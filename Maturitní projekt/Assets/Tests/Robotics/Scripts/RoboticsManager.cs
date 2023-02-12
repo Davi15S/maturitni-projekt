@@ -6,6 +6,8 @@ using System.Linq;
 public class RoboticsManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private GameObject goals;
+    [SerializeField] private GameObject gameWonCanvas;
+    [SerializeField] private GameObject timer;
     private InputScript[] inputs;
     public static RoboticsManager instance { get; private set; }
     private LogicGateType type = LogicGateType.AND;
@@ -46,12 +48,14 @@ public class RoboticsManager : MonoBehaviour, IDataPersistence
         inputs = goals.GetComponentsInChildren<InputScript>();
         if (inputs.All(x => x.GetConnection()) && !gameFinished)
         {
-            GameWon();
+            timer.SetActive(false);
+            FunctionTimer.Create(GameWon, 3f);
         }
     }
     private void GameWon()
     {
         gameFinished = true;
+        gameWonCanvas.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Robotics);
     }
 }

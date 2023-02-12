@@ -14,12 +14,15 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject totalNumber;
     [SerializeField] private GameObject cablesObj;
     [SerializeField] private GameObject goalsObj;
-    [SerializeField] private GameObject debugText;
+    [SerializeField] private GameObject timer;
+    [SerializeField] private GameObject gameWonCanvas;
 
     private GenerateCableNumber[] cables;
     private GoalScript[] goals;
     private GameData.Level[] levels;
     private int level;
+    private int taskLevel = 1;
+    private bool isTransitionActive = false;
 
     private float calculatedTotalNumber;
     private float resultNumber;
@@ -48,9 +51,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     {
         cables = cablesObj.GetComponentsInChildren<GenerateCableNumber>();
         goals = goalsObj.GetComponentsInChildren<GoalScript>();
-        CalculateResultNumber();
-        displayNumber.GetComponent<TextMeshProUGUI>().text = resultNumber.ToString();
-        totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
+        SetGame();
     }
 
     // Spočítá součet všech propojených kabelů
@@ -63,24 +64,35 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
 
         if (calculatedTotalNumber == resultNumber)
         {
-            GameWon();
+            if (taskLevel >= 2)
+            {
+                timer.SetActive(false);
+                FunctionTimer.Create(GameWon, 3f);
+            }
+            else
+            {
+                taskLevel++;
+                isTransitionActive = true;
+                timer.gameObject.SetActive(false);
+                FunctionTimer.Create(TestFunction, 3f);
+            }
         }
     }
 
     // Spočítá výsledek, ke kterýmu se musí uživatel dostat
     private void CalculateResultNumber()
     {
-        debugText.GetComponent<TextMeshProUGUI>().text = "Initing quiz!";
         cables = cables.OrderBy(i => Random.value).ToArray();
         for (int i = 0; i < cables.Length; i++)
         {
+            cables[i].GenerateNumber();
+            goals[i].GenerateNumber();
+
             // Debug text
             Debug.Log(cables[i].GetGeneratedNumber() + "|" + goals[i].GetGeneratedNumber() + "|" + goals[i].GetMathOperation());
 
             resultNumber = resultNumber + CalculateNumber(cables[i].GetGeneratedNumber(), goals[i].GetGeneratedNumber(), goals[i].GetMathOperation());
-            Debug.Log(cables[i].GetGeneratedNumber());
         }
-        debugText.GetComponent<TextMeshProUGUI>().text += resultNumber;
         resultNumber = RoundNumber(resultNumber);
     }
 
@@ -104,6 +116,29 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
 
     private void GameWon()
     {
+        gameWonCanvas.gameObject.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Math);
     }
+
+    private void SetGame()
+    {
+        resultNumber = 0;
+        CalculateResultNumber();
+        displayNumber.GetComponent<TextMeshProUGUI>().text = resultNumber.ToString();
+        totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
+    }
+
+    private void TestFunction()
+    {
+        for (int i = 0; i < cables.Length; i++)
+        {
+            cables[i].SetCable();
+            goals[i].SetGoal();
+        }
+        SetGame();
+        isTransitionActive = false;
+        timer.gameObject.SetActive(true);
+    }
+
+    public bool GetTransitionActive() { return isTransitionActive; }
 }
