@@ -13,6 +13,7 @@ public class Cable : MonoBehaviour
     [SerializeField] private Sprite spriteConnected;
     [SerializeField] private Sprite spriteUnconnected;
 
+    private bool isDragable = true;
     private bool isDragged = false;
     private List<Vector3> cursorPositionList = new List<Vector3>();
     private SpriteRenderer mySprite;
@@ -44,7 +45,7 @@ public class Cable : MonoBehaviour
         Vector3 cellWorldPos = tileMapScript.GetCellWordlPosition();
 
         // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
-        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos) && !GeneratedNumberManager.instance.GetTransitionActive())
+        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos) && isDragable)
         {
             transform.position = cellWorldPos;
             tileMapScript.RemoveFromList(cursorPositionList.Last());
@@ -140,5 +141,10 @@ public class Cable : MonoBehaviour
             tileMapScript.AddToLogicGateList(transform.position);
             CheckConnection();
         }
+    }
+
+    public void SetIsDragable(bool isDragable)
+    {
+        this.isDragable = isDragable;
     }
 }
