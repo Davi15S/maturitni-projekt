@@ -17,7 +17,7 @@ public class LogicGate : MonoBehaviour
         SetLogicGate(RoboticsManager.instance.GetLogicGateType());
         tilemapScript = GetComponentInParent<TilemapScript>();
         inputScriptArray = GetComponentsInChildren<InputScript>();
-        spriteRenderer.color = logicGateObj.color;
+        spriteRenderer.sprite = logicGateObj.sprite;
         type = logicGateObj.type;
     }
 
