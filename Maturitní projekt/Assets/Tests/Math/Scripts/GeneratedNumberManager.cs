@@ -15,14 +15,14 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject cablesObj;
     [SerializeField] private GameObject goalsObj;
     [SerializeField] private GameObject timer;
-    [SerializeField] private GameObject gameWonCanvas;
+    [SerializeField] private GameObject timerTransition;
+    [SerializeField] private GameObject gameOverCanvas;
 
     private GenerateCableNumber[] cables;
     private GoalScript[] goals;
     private GameData.Level[] levels;
     private int level;
     private int taskLevel = 1;
-    private bool isTransitionActive = false;
 
     private float calculatedTotalNumber;
     private float resultNumber;
@@ -66,14 +66,17 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
         {
             if (taskLevel >= 2)
             {
-                timer.SetActive(false);
-                FunctionTimer.Create(GameWon, 3f);
+                GameWon();
             }
             else
             {
+                for (int i = 0; i < cables.Length; i++)
+                {
+                    cables[i].SetIsDragable();
+                }
                 taskLevel++;
-                isTransitionActive = true;
                 timer.gameObject.SetActive(false);
+                timerTransition.SetActive(true);
                 FunctionTimer.Create(TestFunction, 3f);
             }
         }
@@ -116,7 +119,8 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
 
     private void GameWon()
     {
-        gameWonCanvas.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        gameOverCanvas.gameObject.SetActive(true);
         DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.Math);
     }
 
@@ -136,9 +140,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
             goals[i].SetGoal();
         }
         SetGame();
-        isTransitionActive = false;
+        timerTransition.SetActive(false);
         timer.gameObject.SetActive(true);
     }
-
-    public bool GetTransitionActive() { return isTransitionActive; }
 }
