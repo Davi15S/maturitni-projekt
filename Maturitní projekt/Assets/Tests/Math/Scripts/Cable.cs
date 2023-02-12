@@ -29,18 +29,7 @@ public class Cable : MonoBehaviour
         tileMapScript = GetComponentInParent<TilemapScript>();
         tilemap = GetComponentInParent<Tilemap>();
 
-        if (!isRobotics)
-        {
-            transform.position = tilemap.GetCellCenterWorld(startCellPosition);
-            cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
-        }
-        else
-        {
-            transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
-            cursorPositionList.Add(transform.position);
-            tileMapScript.AddToLogicGateList(transform.position);
-            CheckConnection();
-        }
+        SetCable();
     }
 
     private void FixedUpdate()
@@ -55,7 +44,7 @@ public class Cable : MonoBehaviour
         Vector3 cellWorldPos = tileMapScript.GetCellWordlPosition();
 
         // Zkontrolovat, zda místo, kam chci táhnout kabel, je přístupný
-        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos))
+        if (isDragged && tilemap.GetTile(mouseCell) && IsNeighbor(cellWorldPos) && !tileMapScript.GetList().Contains(cellWorldPos) && !GeneratedNumberManager.instance.GetTransitionActive())
         {
             transform.position = cellWorldPos;
             tileMapScript.RemoveFromList(cursorPositionList.Last());
@@ -117,8 +106,6 @@ public class Cable : MonoBehaviour
 
     private void RotateCable(Vector3 currentPosition, Vector3 lastPosition)
     {
-        Debug.Log(currentPosition - lastPosition);
-
         if ((currentPosition.x - lastPosition.x) > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -134,6 +121,24 @@ public class Cable : MonoBehaviour
         else if ((currentPosition.y - lastPosition.y) > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+    }
+
+    public void SetCable()
+    {
+        tileMapScript.ClearAllLists();
+        cursorPositionList.Clear();
+        if (!isRobotics)
+        {
+            transform.position = tilemap.GetCellCenterWorld(startCellPosition);
+            cursorPositionList.Add(tilemap.GetCellCenterWorld(startCellPosition));
+        }
+        else
+        {
+            transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
+            cursorPositionList.Add(transform.position);
+            tileMapScript.AddToLogicGateList(transform.position);
+            CheckConnection();
         }
     }
 }
