@@ -22,7 +22,7 @@ public class GenerateCableNumber : MonoBehaviour
 
     public void SetCable()
     {
-        GetComponentInChildren<Cable>().SetCable();
+        GetComponentInChildren<Cable>().SetNewRoundCable();
     }
 
     public void SetIsDragable()

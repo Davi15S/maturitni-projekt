@@ -76,15 +76,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.908308, b: 0, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &-6008182553085184354
@@ -127,6 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCellPosition: {x: 5, y: 2, z: 0}
   tilemap: {fileID: 0}
+  addSprite: {fileID: -269423910, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
+  substractSprite: {fileID: 2020713593, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
+  divideSprite: {fileID: -62617160, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
+  multiplySprite: {fileID: -1822015177, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
 --- !u!1 &8263895886672368081
 GameObject:
   m_ObjectHideFlags: 0
