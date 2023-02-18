@@ -15,7 +15,6 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject cablesObj;
     [SerializeField] private GameObject goalsObj;
     [SerializeField] private GameObject timer;
-    [SerializeField] private GameObject timerTransition;
     [SerializeField] private GameObject gameOverCanvas;
 
     private GenerateCableNumber[] cables;
@@ -76,8 +75,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
                 }
                 taskLevel++;
                 timer.gameObject.SetActive(false);
-                timerTransition.SetActive(true);
-                FunctionTimer.Create(TestFunction, 3f);
+                FunctionTimer.Create(SetTaskLevel, 3f);
             }
         }
     }
@@ -132,7 +130,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
         totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
     }
 
-    private void TestFunction()
+    private void SetTaskLevel()
     {
         for (int i = 0; i < cables.Length; i++)
         {
@@ -140,7 +138,6 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
             goals[i].SetGoal();
         }
         SetGame();
-        timerTransition.SetActive(false);
         timer.gameObject.SetActive(true);
     }
 }

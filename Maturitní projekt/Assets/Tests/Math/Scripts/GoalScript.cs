@@ -27,12 +27,11 @@ public class GoalScript : MonoBehaviour
 
     void Start()
     {
-        displayText = GetComponentInChildren<TextMeshPro>();
+        // displayText = GetComponentInChildren<TextMeshPro>();
         sprite = GetComponent<SpriteRenderer>();
 
         transform.position = tilemap.GetCellCenterWorld(startCellPosition);
         SetGoal();
-        SetSprite();
     }
     void Update()
     {
@@ -50,7 +49,7 @@ public class GoalScript : MonoBehaviour
                 cableGeneratedNumber = collider.GetComponent<Cable>().GetGeneratedNumber();
 
                 // Debug text
-                displayText.text = cableGeneratedNumber + " " + defaultText;
+                // displayText.text = cableGeneratedNumber + " " + defaultText;
 
                 if (!dataSent[0])
                 {
@@ -62,7 +61,7 @@ public class GoalScript : MonoBehaviour
             else if (!Array.Exists(colliders, x => x.tag == "Cable"))
             {
                 // Debug text
-                displayText.text = defaultText;
+                // displayText.text = defaultText;
 
                 if (!dataSent[1]) { CableUnConnect(); }
             }
@@ -73,7 +72,7 @@ public class GoalScript : MonoBehaviour
     {
         generatedNumber = UnityEngine.Random.Range(1, 11);
         defaultText = mathOperation.ToString() + " " + generatedNumber;
-        displayText.text = defaultText;
+        // displayText.text = defaultText;
     }
     private float CalculateNumber()
     {
@@ -93,6 +92,7 @@ public class GoalScript : MonoBehaviour
     public void SetGoal()
     {
         mathOperation = (MathOperations)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(MathOperations)).Length);
+        SetSprite();
     }
     private void SetSprite()
     {

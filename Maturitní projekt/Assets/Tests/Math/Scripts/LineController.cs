@@ -6,6 +6,7 @@ public class LineController : MonoBehaviour
 {
     private LineRenderer lr;
     private Cable cursor;
+    private List<Vector3> positions;
 
     private void Awake()
     {

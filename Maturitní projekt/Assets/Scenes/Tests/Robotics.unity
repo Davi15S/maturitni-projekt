@@ -3063,6 +3063,14 @@ PrefabInstance:
       propertyPath: isRobotics
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: cabelMaterialConnected
+      value: 
+      objectReference: {fileID: 2100000, guid: 6dbbb406c421391409b923ae1393c2af, type: 2}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: cabelMaterialUnconnected
+      value: 
+      objectReference: {fileID: 2100000, guid: 2885abf75d5730a42b155ba3682a849d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
 --- !u!1 &945673623
@@ -4021,6 +4029,14 @@ PrefabInstance:
       propertyPath: startCellPosition.x
       value: -11
       objectReference: {fileID: 0}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: cabelMaterialConnected
+      value: 
+      objectReference: {fileID: 2100000, guid: 6dbbb406c421391409b923ae1393c2af, type: 2}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: cabelMaterialUnconnected
+      value: 
+      objectReference: {fileID: 2100000, guid: 2885abf75d5730a42b155ba3682a849d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
 --- !u!1 &1808389851
@@ -4221,6 +4237,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1101728186}
     m_Modifications:
+    - target: {fileID: 5749641959406731116, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6dbbb406c421391409b923ae1393c2af, type: 2}
     - target: {fileID: 5749641960018136640, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
       propertyPath: m_Name
       value: Cable
@@ -4273,6 +4293,14 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 225284572}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: cabelMaterialConnected
+      value: 
+      objectReference: {fileID: 2100000, guid: 6dbbb406c421391409b923ae1393c2af, type: 2}
+    - target: {fileID: 6296116928932228080, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
+      propertyPath: cabelMaterialUnconnected
+      value: 
+      objectReference: {fileID: 2100000, guid: 2885abf75d5730a42b155ba3682a849d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ae1b9721979f24386c82e2c34849cd, type: 3}
 --- !u!1 &2081490073

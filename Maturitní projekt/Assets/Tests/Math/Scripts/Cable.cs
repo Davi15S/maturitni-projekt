@@ -12,6 +12,8 @@ public class Cable : MonoBehaviour
     [SerializeField] private bool isPositive;
     [SerializeField] private Sprite spriteConnected;
     [SerializeField] private Sprite spriteUnconnected;
+    [SerializeField] private Material cabelMaterialConnected;
+    [SerializeField] private Material cabelMaterialUnconnected;
 
     private bool isDragable = true;
     private bool isDragged = false;
@@ -20,15 +22,14 @@ public class Cable : MonoBehaviour
     private TilemapScript tileMapScript;
     private int generatedNumber;
     private LogicGateType type;
-
-    [SerializeField] private bool isDebug;
-
+    private LineRenderer lineRenderer;
 
     private void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
         tileMapScript = GetComponentInParent<TilemapScript>();
         tilemap = GetComponentInParent<Tilemap>();
+        lineRenderer = GetComponentInChildren<LineRenderer>();
 
         SetCable();
     }
@@ -135,10 +136,12 @@ public class Cable : MonoBehaviour
             if (isPositive)
             {
                 mySprite.sprite = spriteConnected;
+                lineRenderer.material = cabelMaterialConnected;
             }
             else
             {
                 mySprite.sprite = spriteUnconnected;
+                lineRenderer.material = cabelMaterialUnconnected;
             }
         }
     }
