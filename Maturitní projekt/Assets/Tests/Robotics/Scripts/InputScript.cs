@@ -11,6 +11,8 @@ public class InputScript : MonoBehaviour
     private bool isPositive = false;
     private SpriteRenderer sprite;
     [SerializeField] LayerMask mask;
+    [SerializeField] Sprite spriteConnected;
+    [SerializeField] Sprite spriteUnconnected;
 
     void Start()
     {
@@ -51,11 +53,11 @@ public class InputScript : MonoBehaviour
     {
         if (isPositive)
         {
-            sprite.color = Color.green;
+            sprite.sprite = spriteConnected;
         }
         else
         {
-            sprite.color = Color.red;
+            sprite.sprite = spriteUnconnected;
         }
     }
 

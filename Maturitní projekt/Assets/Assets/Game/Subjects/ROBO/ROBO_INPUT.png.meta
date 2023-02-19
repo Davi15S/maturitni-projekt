@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 716f375e821413042a6f0a4b75cb3458
+guid: dfc498b6c64c7bf4795c9c9f2af28723
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Props_TEV_1.1_0
+      name: ROBO_INPUT_0
       rect:
         serializedVersion: 2
-        x: 490
-        y: 80
-        width: 190
-        height: 180
+        x: 2
+        y: 34
+        width: 11
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +118,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a6d74ea1cb3fb04395345b3fcbaa989
-      internalID: -1246202076
+      spriteID: 657a31eb9cf1e4a4d8ccd10b339a3cda
+      internalID: -1239230627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ROBO_INPUT_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b0aaa8d2dd5f3a4cb3ab7249d1a94db
+      internalID: -888777536
       vertices: []
       indices: 
       edges: []
@@ -135,7 +156,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Props_TEV_1.1_0: -1246202076
+      ROBO_INPUT_0: -1239230627
+      ROBO_INPUT_1: -888777536
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
