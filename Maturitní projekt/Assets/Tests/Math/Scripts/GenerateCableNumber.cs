@@ -15,8 +15,8 @@ public class GenerateCableNumber : MonoBehaviour
         GetComponentInChildren<Cable>().SetIsDragable(true);
 
         // Debug text
-        // displayNumber = GetComponentInChildren<TextMeshPro>();
-        // displayNumber.text = generatedNumber.ToString();
+        displayNumber = GetComponentInChildren<TextMeshPro>();
+        displayNumber.text = generatedNumber.ToString();
     }
     public int GetGeneratedNumber() { return generatedNumber; }
 

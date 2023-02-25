@@ -127,10 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCellPosition: {x: 5, y: 2, z: 0}
   tilemap: {fileID: 0}
-  addSprite: {fileID: -269423910, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
-  substractSprite: {fileID: 2020713593, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
-  divideSprite: {fileID: -62617160, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
-  multiplySprite: {fileID: -1822015177, guid: dc1cc24a55d097843b208ba5354610ff, type: 3}
+  addSprite: {fileID: 1500936820, guid: 73d3b4085a3bb2541a2715109bcf097b, type: 3}
+  substractSprite: {fileID: 476874943, guid: 73d3b4085a3bb2541a2715109bcf097b, type: 3}
+  divideSprite: {fileID: 808888373, guid: 73d3b4085a3bb2541a2715109bcf097b, type: 3}
+  multiplySprite: {fileID: 2007262680, guid: 73d3b4085a3bb2541a2715109bcf097b, type: 3}
 --- !u!1 &8263895886672368081
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,8 +166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.755, y: 0.036}
-  m_SizeDelta: {x: 1.716, y: 1.751}
+  m_AnchoredPosition: {x: 1.1217, y: 0.024}
+  m_SizeDelta: {x: 0.6314, y: 0.655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3959500266347041301
 MeshRenderer:
@@ -209,7 +209,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7456075052320727508
 MonoBehaviour:
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284693508
+  m_fontColor: {r: 0.015686275, g: 0.23529413, b: 0.38823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -258,14 +258,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 4
+  m_fontSizeBase: 4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

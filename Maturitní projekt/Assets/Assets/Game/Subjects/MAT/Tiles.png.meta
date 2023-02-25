@@ -212,10 +212,10 @@ TextureImporter:
       name: Tiles_6
       rect:
         serializedVersion: 2
-        x: 860
-        y: 60
-        width: 360
-        height: 30
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -385,7 +385,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -406,7 +406,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -414,6 +414,48 @@ TextureImporter:
       bones: []
       spriteID: 8a1c8786db3a84c48af11d25138bb2a2
       internalID: -2071090060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc3e7b122ddcca47a128275fddcafee
+      internalID: 293245361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles_16
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76cad51f7c0304c468ec3ac40458fd37
+      internalID: 1273176834
       vertices: []
       indices: 
       edges: []
@@ -437,9 +479,11 @@ TextureImporter:
       Tiles_9: 2020713593
       Tiles_7: -997921035
       Tiles_4: 467690265
+      Tiles_16: 1273176834
       Tiles_13: -2034648918
       Tiles_11: 293341576
       Tiles_12: 544595466
+      Tiles_15: 293245361
       Tiles_3: -1200420640
       Tiles_8: -62617160
       Tiles_2: 1291258493
