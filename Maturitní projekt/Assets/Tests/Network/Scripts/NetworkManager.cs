@@ -8,7 +8,6 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private GameObject display;
     [SerializeField] private TextMeshProUGUI toBaseString;
-    [SerializeField] private TextMeshProUGUI fromBaseString;
     [SerializeField] private Timer timer;
     [SerializeField] private GameObject gameWon;
     [SerializeField] private ResultInput resultInput;
@@ -122,8 +121,7 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
         else
         {
             displayText.text = result;
-            toBaseString.text = $"Do 10kové soustavy!";
-            fromBaseString.text = $"Z {_base}kové soustavy!";
+            toBaseString.text = $"Z {_base}kové do 10kové soustavy!";
             isToDecimal = true;
             Debug.Log(displayNumber.ToString());
         }
