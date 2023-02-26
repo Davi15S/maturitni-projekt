@@ -6,10 +6,12 @@ public class PlayerPEController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool isGrounded;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -23,6 +25,7 @@ public class PlayerPEController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * 200);
             isGrounded = false;
+            animator.SetBool("isJumping", true);
         }
     }
 
@@ -31,6 +34,7 @@ public class PlayerPEController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            animator.SetBool("isJumping", false);
         }
     }
 }

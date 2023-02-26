@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Timer : MonoBehaviour
+public class PETimer : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private float gameTime;
@@ -29,6 +29,7 @@ public class Timer : MonoBehaviour
         {
             Time.timeScale = 0f;
             gameCanvas.SetActive(true);
+            PEManager.instance.GameWon();
         }
         else
         {
