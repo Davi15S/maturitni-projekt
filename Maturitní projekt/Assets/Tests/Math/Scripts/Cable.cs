@@ -12,6 +12,8 @@ public class Cable : MonoBehaviour
     [SerializeField] private bool isPositive;
     [SerializeField] private Sprite spriteConnected;
     [SerializeField] private Sprite spriteUnconnected;
+    [SerializeField] private Material cabelMaterialConnected;
+    [SerializeField] private Material cabelMaterialUnconnected;
 
     private bool isDragable = true;
     private bool isDragged = false;
@@ -20,15 +22,14 @@ public class Cable : MonoBehaviour
     private TilemapScript tileMapScript;
     private int generatedNumber;
     private LogicGateType type;
-
-    [SerializeField] private bool isDebug;
-
+    private LineRenderer lineRenderer;
 
     private void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
         tileMapScript = GetComponentInParent<TilemapScript>();
         tilemap = GetComponentInParent<Tilemap>();
+        lineRenderer = GetComponentInChildren<LineRenderer>();
 
         SetCable();
     }
@@ -83,22 +84,10 @@ public class Cable : MonoBehaviour
     public List<Vector3> GetPointsList() { return cursorPositionList; }
     public int GetGeneratedNumber() { return generatedNumber; }
     public void SetGeneratedNumber(int number) { generatedNumber = number; }
-    private void CheckConnection()
-    {
-        if (isPositive)
-        {
-            mySprite.color = Color.green;
-        }
-        else
-        {
-            mySprite.color = Color.red;
-        }
-    }
     public void SetConnection(bool connection, LogicGateType logicType)
     {
         type = logicType;
         isPositive = connection;
-        mySprite.sprite = connection ? spriteConnected : spriteUnconnected;
     }
     public bool GetConnection()
     {
@@ -125,10 +114,8 @@ public class Cable : MonoBehaviour
         }
     }
 
-    public void SetCable()
+    private void SetCable()
     {
-        tileMapScript.ClearAllLists();
-        cursorPositionList.Clear();
         if (!isRobotics)
         {
             transform.position = tilemap.GetCellCenterWorld(startCellPosition);
@@ -139,8 +126,33 @@ public class Cable : MonoBehaviour
             transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(transform.position));
             cursorPositionList.Add(transform.position);
             tileMapScript.AddToLogicGateList(transform.position);
-            CheckConnection();
         }
+    }
+
+    private void CheckConnection()
+    {
+        if (isRobotics)
+        {
+            if (isPositive)
+            {
+                mySprite.sprite = spriteConnected;
+                lineRenderer.material = cabelMaterialConnected;
+            }
+            else
+            {
+                mySprite.sprite = spriteUnconnected;
+                lineRenderer.material = cabelMaterialUnconnected;
+            }
+        }
+    }
+
+    public void SetNewRoundCable()
+    {
+        tileMapScript.ClearAllLists();
+        cursorPositionList.Clear();
+        SetConnection(isPositive, type);
+
+        SetCable();
     }
 
     public void SetIsDragable(bool isDragable)

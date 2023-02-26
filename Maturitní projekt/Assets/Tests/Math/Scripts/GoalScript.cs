@@ -11,6 +11,10 @@ public class GoalScript : MonoBehaviour
 
     [SerializeField] private Vector3Int startCellPosition;
     [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Sprite addSprite;
+    [SerializeField] private Sprite substractSprite;
+    [SerializeField] private Sprite divideSprite;
+    [SerializeField] private Sprite multiplySprite;
 
     private SpriteRenderer sprite;
     private TextMeshPro displayText;
@@ -42,11 +46,7 @@ public class GoalScript : MonoBehaviour
         {
             if (collider.gameObject != gameObject && collider.tag == "Cable")
             {
-                sprite.color = Color.red;
                 cableGeneratedNumber = collider.GetComponent<Cable>().GetGeneratedNumber();
-
-                // Debug text
-                displayText.text = cableGeneratedNumber + " " + defaultText;
 
                 if (!dataSent[0])
                 {
@@ -57,10 +57,6 @@ public class GoalScript : MonoBehaviour
             // Objekt necolliduje s kabelem
             else if (!Array.Exists(colliders, x => x.tag == "Cable"))
             {
-                // Debug text
-                displayText.text = defaultText;
-
-                sprite.color = Color.yellow;
                 if (!dataSent[1]) { CableUnConnect(); }
             }
         }
@@ -69,7 +65,7 @@ public class GoalScript : MonoBehaviour
     public void GenerateNumber()
     {
         generatedNumber = UnityEngine.Random.Range(1, 11);
-        defaultText = mathOperation.ToString() + " " + generatedNumber;
+        defaultText = generatedNumber.ToString();
         displayText.text = defaultText;
     }
     private float CalculateNumber()
@@ -90,5 +86,26 @@ public class GoalScript : MonoBehaviour
     public void SetGoal()
     {
         mathOperation = (MathOperations)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(MathOperations)).Length);
+        SetSprite();
+    }
+    private void SetSprite()
+    {
+        switch (mathOperation)
+        {
+            case MathOperations.ADD:
+                sprite.sprite = addSprite;
+                break;
+            case MathOperations.SUBSTRACT:
+                sprite.sprite = substractSprite;
+                break;
+            case MathOperations.MULTIPLY:
+                sprite.sprite = multiplySprite;
+                break;
+            case MathOperations.DIVIDE:
+                sprite.sprite = divideSprite;
+                break;
+            default:
+                break;
+        }
     }
 }
