@@ -76,7 +76,7 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
         {
             if (displayNumber.ToString().Equals(str))
             {
-                timer.gameObject.SetActive(false);
+                timer.StopTimer();
                 FunctionTimer.Create(GameWon, 3f);
             }
         }
@@ -84,7 +84,7 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
         {
             if (result.Equals(str))
             {
-                timer.gameObject.SetActive(false);
+                timer.StopTimer();
                 FunctionTimer.Create(GameWon, 3f);
             }
         }
@@ -100,7 +100,7 @@ public class NetworkManager : MonoBehaviour, IDataPersistence
         }
 
         taskLevel++;
-        timer.gameObject.SetActive(true);
+        timer.SetTimer();
         SetGame();
     }
 

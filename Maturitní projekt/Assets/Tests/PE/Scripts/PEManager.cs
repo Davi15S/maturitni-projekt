@@ -9,7 +9,7 @@ public class PEManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject gameOverPrefab;
     private float gameSpeed;
     private float initialGameSpeed;
-    [SerializeField] private float gameSpeedIncrease = 1.1f;
+    [SerializeField] private float gameSpeedIncrease = 1.05f;
     private float maxGameSpeed;
     private GameData.Level[] levels;
     private int level;
@@ -53,8 +53,13 @@ public class PEManager : MonoBehaviour, IDataPersistence
 
     public void GameOver()
     {
-        gameOverPrefab.SetActive(true);
-        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.PE);
         Time.timeScale = 0f;
+        gameOverPrefab.SetActive(true);
+    }
+
+    public void GameWon()
+    {
+        Debug.Log("Game Won");
+        DataPersistenceManager.instance.FinishQuiz(levels, level, Subject.PE);
     }
 }
