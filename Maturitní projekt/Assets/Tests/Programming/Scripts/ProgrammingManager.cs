@@ -65,7 +65,7 @@ public class ProgrammingManager : MonoBehaviour, IDataPersistence
             if (tasksList.tasks[taskLevel - 1].results[i] != links[i].GetLinkText())
                 return;
         }
-        timer.gameObject.SetActive(false);
+        timer.StopTimer();
         FunctionTimer.Create(GameWon, 3f);
     }
 
@@ -97,6 +97,7 @@ public class ProgrammingManager : MonoBehaviour, IDataPersistence
             timer.gameObject.SetActive(true);
             taskLevel++;
             programmingArea.InitProgrammingArea();
+            timer.SetTimer();
         }
     }
 }

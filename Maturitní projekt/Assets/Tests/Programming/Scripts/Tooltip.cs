@@ -18,8 +18,8 @@ public class Tooltip : MonoBehaviour
 
     public void SetHeight(float height, float width)
     {
-        image.rectTransform.sizeDelta = new Vector2(width + 10, height + 20);
-        rt.sizeDelta = new Vector2(width + 10, height + 20);
+        image.rectTransform.sizeDelta = new Vector2(width + 10, height + 10);
+        rt.sizeDelta = new Vector2(width + 10, height + 10);
         tooltipBackground.SetDimentions(width + 10, height);
     }
 

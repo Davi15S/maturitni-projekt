@@ -14,7 +14,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject totalNumber;
     [SerializeField] private GameObject cablesObj;
     [SerializeField] private GameObject goalsObj;
-    [SerializeField] private GameObject timer;
+    [SerializeField] private Timer timer;
     [SerializeField] private GameObject gameOverCanvas;
 
     private GenerateCableNumber[] cables;
@@ -74,7 +74,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
                     cables[i].SetIsDragable();
                 }
                 taskLevel++;
-                timer.gameObject.SetActive(false);
+                timer.StopTimer();
                 FunctionTimer.Create(SetTaskLevel, 3f);
             }
         }
@@ -126,6 +126,7 @@ public class GeneratedNumberManager : MonoBehaviour, IDataPersistence
     {
         resultNumber = 0;
         CalculateResultNumber();
+        timer.SetTimer();
         displayNumber.GetComponent<TextMeshProUGUI>().text = resultNumber.ToString();
         totalNumber.GetComponent<TextMeshProUGUI>().text = "0";
     }

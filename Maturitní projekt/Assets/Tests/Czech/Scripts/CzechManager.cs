@@ -29,7 +29,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TextAsset dataJson;
     [SerializeField] private TextMeshProUGUI questionCanvas;
     [SerializeField] private GameObject buttonsGameObject;
-    [SerializeField] private GameObject timer;
+    [SerializeField] private Timer timer;
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject gameWonCanvas;
     private Button[] buttons;
@@ -57,7 +57,6 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         buttons = buttonsGameObject.GetComponentsInChildren<Button>();
         questionsList = JsonUtility.FromJson<QuestionsList>(dataJson.text);
-        timer.SetActive(false);
 
         Shuffle();
         SetQuestion();
@@ -76,7 +75,7 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
     private void SetAnswers()
     {
-        timer.SetActive(true);
+        timer.SetTimer();
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = questionsList.questions[question].answers[i].answer;
@@ -107,22 +106,20 @@ public class CzechManager : MonoBehaviour, IDataPersistence
 
         if (question >= 3)
         {
-            timer.SetActive(false);
+            timer.StopTimer();
             FunctionTimer.Create(GameWon, 3f);
         }
         else
         {
             if (questionsList.questions[question].answers[index].result)
             {
-                Debug.Log("Odpověď byla správná!");
                 question++;
-                timer.SetActive(false);
+                timer.StopTimer();
                 FunctionTimer.Create(SetQuestion, 3f);
             }
             else
             {
-                Debug.Log("Odpověď nebyla správná!");
-                timer.SetActive(false);
+                timer.StopTimer();
                 FunctionTimer.Create(SetGameOverCanvas, 3f);
 
             }

@@ -1377,8 +1377,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1734,6 +1734,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1476437203}
     m_Modifications:
     - target: {fileID: 993164572, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
+      propertyPath: gameTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 993164572, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: gameCanvas
       value: 
       objectReference: {fileID: 439262097}
@@ -1803,11 +1807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5200781142568100420, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 317
       objectReference: {fileID: 0}
     - target: {fileID: 5200781142568100420, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -198
+      value: 148
       objectReference: {fileID: 0}
     - target: {fileID: 5200781142568100420, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1827,11 +1831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699796298221428247, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9013092054842418974, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f4340bfcf79174b9b169ef84fc8418, type: 3}

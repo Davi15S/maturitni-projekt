@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3825284975693689511}
   - component: {fileID: 4446291975421039370}
   - component: {fileID: 474367014915496310}
+  - component: {fileID: 1489159460}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -152,6 +153,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1489159460
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394333629312607647}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 56cc6d42c02ad6947a72afe7212b9832, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8587873249653694612
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,5 +314,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 5393953047840414557}
-  gameTime: 10
+  gameTime: 60
   gameCanvas: {fileID: 0}
